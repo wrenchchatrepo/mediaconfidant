@@ -1,0 +1,327 @@
+[submodule "submodules/bigquery-ml-pipeline"]
+	path = submodules/bigquery-ml-pipeline
+	url = https://github.com/dataform-co/bigquery-ml-pipeline
+[submodule "submodules/dataform"]
+	path = submodules/dataform
+	url = https://github.com/dataform-co/dataform
+[submodule "submodules/dataform-bq-audit-logs"]
+	path = submodules/dataform-bq-audit-logs
+	url = https://github.com/dataform-co/dataform-bq-audit-logs
+[submodule "submodules/dataform-bqml"]
+	path = submodules/dataform-bqml
+	url = https://github.com/dataform-co/dataform-bqml
+[submodule "submodules/dataform-example-project-bigquery"]
+	path = submodules/dataform-example-project-bigquery
+	url = https://github.com/dataform-co/dataform-example-project-bigquery
+[submodule "submodules/python-bigquery-analyticshub"]
+	path = submodules/python-bigquery-analyticshub
+	url = https://github.com/googleapis/python-bigquery-analyticshub
+[submodule "submodules/python-bigquery-connection"]
+	path = submodules/python-bigquery-connection
+	url = https://github.com/googleapis/python-bigquery-connection
+[submodule "submodules/python-bigquery-datapolicies"]
+	path = submodules/python-bigquery-datapolicies
+	url = https://github.com/googleapis/python-bigquery-datapolicies
+[submodule "submodules/python-bigquery-logging"]
+	path = submodules/python-bigquery-logging
+	url = https://github.com/googleapis/python-bigquery-logging
+[submodule "submodules/python-bigquery-magics"]
+	path = submodules/python-bigquery-magics
+	url = https://github.com/googleapis/python-bigquery-magics
+[submodule "submodules/python-bigquery-storage"]
+	path = submodules/python-bigquery-storage
+	url = https://github.com/googleapis/python-bigquery-storage
+[submodule "submodules/python-dataform"]
+	path = submodules/python-dataform
+	url = https://github.com/googleapis/python-dataform
+[submodule "submodules/python-scheduler"]
+	path = submodules/python-scheduler
+	url = https://github.com/googleapis/python-scheduler
+[submodule "submodules/bigquery-ml-templates"]
+	path = submodules/bigquery-ml-templates
+	url = https://github.com/GoogleCloudPlatform/bigquery-ml-templates
+[submodule "submodules/composer-infra-python"]
+	path = submodules/composer-infra-python
+	url = https://github.com/GoogleCloudPlatform/composer-infra-python
+[submodule "submodules/composer-local-dev"]
+	path = submodules/composer-local-dev
+	url = https://github.com/GoogleCloudPlatform/composer-local-dev
+[submodule "submodules/composer-utilities"]
+	path = submodules/composer-utilities
+	url = https://github.com/GoogleCloudPlatform/composer-utilities
+[submodule "submodules/google-analytics-premium-bigquery-statistics"]
+	path = submodules/google-analytics-premium-bigquery-statistics
+	url = https://github.com/GoogleCloudPlatform/google-analytics-premium-bigquery-statistics
+[submodule "submodules/marketing-analytics-jumpstart-dataform"]
+	path = submodules/marketing-analytics-jumpstart-dataform
+	url = https://github.com/GoogleCloudPlatform/marketing-analytics-jumpstart-dataform
+[submodule "submodules/mlops-with-vertex-ai"]
+	path = submodules/mlops-with-vertex-ai
+	url = https://github.com/GoogleCloudPlatform/mlops-with-vertex-ai
+[submodule "submodules/vertex-ai-samples"]
+	path = submodules/vertex-ai-samples
+	url = https://github.com/GoogleCloudPlatform/vertex-ai-samples
+[submodule "submodules/vertex-pipelines-end-to-end-samples"]
+	path = submodules/vertex-pipelines-end-to-end-samples
+	url = https://github.com/GoogleCloudPlatform/vertex-pipelines-end-to-end-samples
+[submodule "submodules/access-token-server"]
+	path = submodules/access-token-server
+	url = https://github.com/looker-open-source/access-token-server
+[submodule "submodules/actions"]
+	path = submodules/actions
+	url = https://github.com/looker-open-source/actions
+[submodule "submodules/admin_power_pack"]
+	path = submodules/admin_power_pack
+	url = https://github.com/looker-open-source/admin_power_pack
+[submodule "submodules/adwords_demo"]
+	path = submodules/adwords_demo
+	url = https://github.com/looker-open-source/adwords_demo
+[submodule "submodules/app-data-dictionary"]
+	path = submodules/app-data-dictionary
+	url = https://github.com/looker-open-source/app-data-dictionary
+[submodule "submodules/app-lookml-diagram"]
+	path = submodules/app-lookml-diagram
+	url = https://github.com/looker-open-source/app-lookml-diagram
+[submodule "submodules/app-ml-accelerator"]
+	path = submodules/app-ml-accelerator
+	url = https://github.com/looker-open-source/app-ml-accelerator
+[submodule "submodules/basic-gauth-react-app"]
+	path = submodules/basic-gauth-react-app
+	url = https://github.com/looker-open-source/basic-gauth-react-app
+[submodule "submodules/bigquery_information_schema_block"]
+	path = submodules/bigquery_information_schema_block
+	url = https://github.com/looker-open-source/bigquery_information_schema_block
+[submodule "submodules/block-bigquery-optimization"]
+	path = submodules/block-bigquery-optimization
+	url = https://github.com/looker-open-source/block-bigquery-optimization
+[submodule "submodules/block-bigquery-optimization-config"]
+	path = submodules/block-bigquery-optimization-config
+	url = https://github.com/looker-open-source/block-bigquery-optimization-config
+[submodule "submodules/block-bing-ads"]
+	path = submodules/block-bing-ads
+	url = https://github.com/looker-open-source/block-bing-ads
+[submodule "submodules/block-bing-ads-config"]
+	path = submodules/block-bing-ads-config
+	url = https://github.com/looker-open-source/block-bing-ads-config
+[submodule "submodules/block-bqml"]
+	path = submodules/block-bqml
+	url = https://github.com/looker-open-source/block-bqml
+[submodule "submodules/block-bqml-k-means"]
+	path = submodules/block-bqml-k-means
+	url = https://github.com/looker-open-source/block-bqml-k-means
+[submodule "submodules/block-facebook-ads"]
+	path = submodules/block-facebook-ads
+	url = https://github.com/looker-open-source/block-facebook-ads
+[submodule "submodules/block-facebook-ads-config"]
+	path = submodules/block-facebook-ads-config
+	url = https://github.com/looker-open-source/block-facebook-ads-config
+[submodule "submodules/block-gcp-audit-logs-config"]
+	path = submodules/block-gcp-audit-logs-config
+	url = https://github.com/looker-open-source/block-gcp-audit-logs-config
+[submodule "submodules/block-gcp-billing"]
+	path = submodules/block-gcp-billing
+	url = https://github.com/looker-open-source/block-gcp-billing
+[submodule "submodules/block-gcp-billing-config"]
+	path = submodules/block-gcp-billing-config
+	url = https://github.com/looker-open-source/block-gcp-billing-config
+[submodule "submodules/block-generate-text-llm"]
+	path = submodules/block-generate-text-llm
+	url = https://github.com/looker-open-source/block-generate-text-llm
+[submodule "submodules/block-github"]
+	path = submodules/block-github
+	url = https://github.com/looker-open-source/block-github
+[submodule "submodules/block-github-config"]
+	path = submodules/block-github-config
+	url = https://github.com/looker-open-source/block-github-config
+[submodule "submodules/block-google-ads"]
+	path = submodules/block-google-ads
+	url = https://github.com/looker-open-source/block-google-ads
+[submodule "submodules/block-google-ads-config"]
+	path = submodules/block-google-ads-config
+	url = https://github.com/looker-open-source/block-google-ads-config
+[submodule "submodules/block-google-cloud-billing"]
+	path = submodules/block-google-cloud-billing
+	url = https://github.com/looker-open-source/block-google-cloud-billing
+[submodule "submodules/block-multicloud-billing-bq-export"]
+	path = submodules/block-multicloud-billing-bq-export
+	url = https://github.com/looker-open-source/block-multicloud-billing-bq-export
+[submodule "submodules/block-multicloud-billing-dashboard"]
+	path = submodules/block-multicloud-billing-dashboard
+	url = https://github.com/looker-open-source/block-multicloud-billing-dashboard
+[submodule "submodules/block-new-bigquery-optimization"]
+	path = submodules/block-new-bigquery-optimization
+	url = https://github.com/looker-open-source/block-new-bigquery-optimization
+[submodule "submodules/block-new-bigquery-optimization-config"]
+	path = submodules/block-new-bigquery-optimization-config
+	url = https://github.com/looker-open-source/block-new-bigquery-optimization-config
+[submodule "submodules/block-tiktok"]
+	path = submodules/block-tiktok
+	url = https://github.com/looker-open-source/block-tiktok
+[submodule "submodules/block-weather"]
+	path = submodules/block-weather
+	url = https://github.com/looker-open-source/block-weather
+[submodule "submodules/bq_info_schema_block"]
+	path = submodules/bq_info_schema_block
+	url = https://github.com/looker-open-source/bq_info_schema_block
+[submodule "submodules/bq_info_schema_block_config"]
+	path = submodules/bq_info_schema_block_config
+	url = https://github.com/looker-open-source/bq_info_schema_block_config
+[submodule "submodules/bqjdbc"]
+	path = submodules/bqjdbc
+	url = https://github.com/looker-open-source/bqjdbc
+[submodule "submodules/bqml_semantic_search_block"]
+	path = submodules/bqml_semantic_search_block
+	url = https://github.com/looker-open-source/bqml_semantic_search_block
+[submodule "submodules/bqml-actions"]
+	path = submodules/bqml-actions
+	url = https://github.com/looker-open-source/bqml-actions
+[submodule "submodules/cloud_logging_old"]
+	path = submodules/cloud_logging_old
+	url = https://github.com/looker-open-source/cloud_logging_old
+[submodule "submodules/custom_visualizations_v2"]
+	path = submodules/custom_visualizations_v2
+	url = https://github.com/looker-open-source/custom_visualizations_v2
+[submodule "submodules/custom-action-hub-example"]
+	path = submodules/custom-action-hub-example
+	url = https://github.com/looker-open-source/custom-action-hub-example
+[submodule "submodules/custom-viz-builder"]
+	path = submodules/custom-viz-builder
+	url = https://github.com/looker-open-source/custom-viz-builder
+[submodule "submodules/data-block-census"]
+	path = submodules/data-block-census
+	url = https://github.com/looker-open-source/data-block-census
+[submodule "submodules/embed-sdk"]
+	path = submodules/embed-sdk
+	url = https://github.com/looker-open-source/embed-sdk
+[submodule "submodules/extension-api-explorer"]
+	path = submodules/extension-api-explorer
+	url = https://github.com/looker-open-source/extension-api-explorer
+[submodule "submodules/extension-examples"]
+	path = submodules/extension-examples
+	url = https://github.com/looker-open-source/extension-examples
+[submodule "submodules/extension-gen-ai"]
+	path = submodules/extension-gen-ai
+	url = https://github.com/looker-open-source/extension-gen-ai
+[submodule "submodules/extension-google-ads-action"]
+	path = submodules/extension-google-ads-action
+	url = https://github.com/looker-open-source/extension-google-ads-action
+[submodule "submodules/ga_four_block"]
+	path = submodules/ga_four_block
+	url = https://github.com/looker-open-source/ga_four_block
+[submodule "submodules/gaming_analytics_block"]
+	path = submodules/gaming_analytics_block
+	url = https://github.com/looker-open-source/gaming_analytics_block
+[submodule "submodules/github_actions_looker_cicd"]
+	path = submodules/github_actions_looker_cicd
+	url = https://github.com/looker-open-source/github_actions_looker_cicd
+[submodule "submodules/google_adwords"]
+	path = submodules/google_adwords
+	url = https://github.com/looker-open-source/google_adwords
+[submodule "submodules/looker_content_observer"]
+	path = submodules/looker_content_observer
+	url = https://github.com/looker-open-source/looker_content_observer
+[submodule "submodules/looker_deployer"]
+	path = submodules/looker_deployer
+	url = https://github.com/looker-open-source/looker_deployer
+[submodule "submodules/looker-explore-assistant"]
+	path = submodules/looker-explore-assistant
+	url = https://github.com/looker-open-source/looker-explore-assistant
+[submodule "submodules/lookr"]
+	path = submodules/lookr
+	url = https://github.com/looker-open-source/lookr
+[submodule "submodules/micro-admin-for-looker"]
+	path = submodules/micro-admin-for-looker
+	url = https://github.com/looker-open-source/micro-admin-for-looker
+[submodule "submodules/ml-accelerator-tutorials"]
+	path = submodules/ml-accelerator-tutorials
+	url = https://github.com/looker-open-source/ml-accelerator-tutorials
+[submodule "submodules/pylookml"]
+	path = submodules/pylookml
+	url = https://github.com/looker-open-source/pylookml
+[submodule "submodules/shopify_stitch_block"]
+	path = submodules/shopify_stitch_block
+	url = https://github.com/looker-open-source/shopify_stitch_block
+[submodule "submodules/thelook"]
+	path = submodules/thelook
+	url = https://github.com/looker-open-source/thelook
+[submodule "submodules/thelookevent"]
+	path = submodules/thelookevent
+	url = https://github.com/looker-open-source/thelookevent
+[submodule "submodules/vertex-ai-actions"]
+	path = submodules/vertex-ai-actions
+	url = https://github.com/looker-open-source/vertex-ai-actions
+[submodule "submodules/vis-treemap"]
+	path = submodules/vis-treemap
+	url = https://github.com/looker-open-source/vis-treemap
+[submodule "submodules/viz-aster-marketplace"]
+	path = submodules/viz-aster-marketplace
+	url = https://github.com/looker-open-source/viz-aster-marketplace
+[submodule "submodules/viz-bar_gauge-marketplace"]
+	path = submodules/viz-bar_gauge-marketplace
+	url = https://github.com/looker-open-source/viz-bar_gauge-marketplace
+[submodule "submodules/viz-calendar_heatmap-marketplace"]
+	path = submodules/viz-calendar_heatmap-marketplace
+	url = https://github.com/looker-open-source/viz-calendar_heatmap-marketplace
+[submodule "submodules/viz-carousel-marketplace"]
+	path = submodules/viz-carousel-marketplace
+	url = https://github.com/looker-open-source/viz-carousel-marketplace
+[submodule "submodules/viz-cartoon-marketplace"]
+	path = submodules/viz-cartoon-marketplace
+	url = https://github.com/looker-open-source/viz-cartoon-marketplace
+[submodule "submodules/viz-chord-marketplace"]
+	path = submodules/viz-chord-marketplace
+	url = https://github.com/looker-open-source/viz-chord-marketplace
+[submodule "submodules/viz-collapsible_tree-marketplace"]
+	path = submodules/viz-collapsible_tree-marketplace
+	url = https://github.com/looker-open-source/viz-collapsible_tree-marketplace
+[submodule "submodules/viz-force_directed_graph-marketplace"]
+	path = submodules/viz-force_directed_graph-marketplace
+	url = https://github.com/looker-open-source/viz-force_directed_graph-marketplace
+[submodule "submodules/viz-gauge_multiple-marketplace"]
+	path = submodules/viz-gauge_multiple-marketplace
+	url = https://github.com/looker-open-source/viz-gauge_multiple-marketplace
+[submodule "submodules/viz-gauge-marketplace"]
+	path = submodules/viz-gauge-marketplace
+	url = https://github.com/looker-open-source/viz-gauge-marketplace
+[submodule "submodules/viz-histogram-marketplace"]
+	path = submodules/viz-histogram-marketplace
+	url = https://github.com/looker-open-source/viz-histogram-marketplace
+[submodule "submodules/viz-liquid_fill_gauge-marketplace"]
+	path = submodules/viz-liquid_fill_gauge-marketplace
+	url = https://github.com/looker-open-source/viz-liquid_fill_gauge-marketplace
+[submodule "submodules/viz-multiple_value-marketplace"]
+	path = submodules/viz-multiple_value-marketplace
+	url = https://github.com/looker-open-source/viz-multiple_value-marketplace
+[submodule "submodules/viz-packed_bubble-marketplace"]
+	path = submodules/viz-packed_bubble-marketplace
+	url = https://github.com/looker-open-source/viz-packed_bubble-marketplace
+[submodule "submodules/viz-radial_gauge-marketplace"]
+	path = submodules/viz-radial_gauge-marketplace
+	url = https://github.com/looker-open-source/viz-radial_gauge-marketplace
+[submodule "submodules/viz-report-table-marketplace"]
+	path = submodules/viz-report-table-marketplace
+	url = https://github.com/looker-open-source/viz-report-table-marketplace
+[submodule "submodules/viz-report-table-marketplace-open-source"]
+	path = submodules/viz-report-table-marketplace-open-source
+	url = https://github.com/looker-open-source/viz-report-table-marketplace-open-source
+[submodule "submodules/viz-sankey-marketplace"]
+	path = submodules/viz-sankey-marketplace
+	url = https://github.com/looker-open-source/viz-sankey-marketplace
+[submodule "submodules/viz-scatter-heatmap"]
+	path = submodules/viz-scatter-heatmap
+	url = https://github.com/looker-open-source/viz-scatter-heatmap
+[submodule "submodules/viz-simple-histogram"]
+	path = submodules/viz-simple-histogram
+	url = https://github.com/looker-open-source/viz-simple-histogram
+[submodule "submodules/viz-spider-marketplace"]
+	path = submodules/viz-spider-marketplace
+	url = https://github.com/looker-open-source/viz-spider-marketplace
+[submodule "submodules/viz-stepped_funnel-marketplace"]
+	path = submodules/viz-stepped_funnel-marketplace
+	url = https://github.com/looker-open-source/viz-stepped_funnel-marketplace
+[submodule "submodules/viz-sunburst-marketplace"]
+	path = submodules/viz-sunburst-marketplace
+	url = https://github.com/looker-open-source/viz-sunburst-marketplace
+[submodule "submodules/llm_at_scale_bigquery_dataform"]
+	path = submodules/llm_at_scale_bigquery_dataform
+	url = https://github.com/HenrikWarf/llm_at_scale_bigquery_dataform
