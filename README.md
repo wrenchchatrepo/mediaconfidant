@@ -1,5 +1,7 @@
 # MediaConfidant - Analytics Pipeline as Code for Data Products
 
+[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
+
 ## Project Overview
 This project integrates advertising data from various platforms using BigQuery, Dataform, and Looker to provide comprehensive insights into ad performance. This repository contains the code and documentation for an analytics pipeline built for MediaConfidant using Google Cloud Workflows and Pulumi and other Google Cloud services. This pipeline automates data ingestion, transformation, analysis, and reporting to provide actionable insights for MediaConfidant's business. 
 
