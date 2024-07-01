@@ -623,3 +623,516 @@ TikTok Ads
 + Interval: Similar to Bing Ads:
 + Daily: Once every 24 hours is a common schedule.
 + Hourly: If real-time insights are critical, you can schedule more frequent pulls.
+
+Estimating Data Volume
+
+Here’s a rough estimation approach to understand the data volume:
+
+1. Google Ads and Facebook Ads:
++ Impressions, Clicks, Conversions: Assume you have 10 campaigns, each generating 10,000 impressions, 1,000 clicks, and 50 conversions per day.
++ Data Points per Record: If each record (impression, click, conversion) has around 10 data points (e.g., timestamps, IDs, metrics), you have:
++ Impressions: 10,000 \times 10 = 100,000 data points
++ Clicks: 1,000 \times 10 = 10,000 data points
++ Conversions: 50 \times 10 = 500 data points
++ Total Data Points: 100,000 + 10,000 + 500 = 110,500 data points per campaign, per day.
++ Total Volume: With 10 campaigns, 110,500 \times 10 = 1,105,000 data points per day.
++ Storage Estimate: Assuming each data point is around 100 bytes, this translates to approximately 110.5 \text{MB} per day for 10 campaigns.
+2. Bing Ads and TikTok Ads:
++ Use a similar approach to estimate based on the number of campaigns and activity levels.
+
+Summary of Data Pull Intervals
+
++ Google Ads and Facebook Ads:
++ Frequency: Once daily
++ Volume: Typically megabytes to gigabytes, depending on ad activity.
++ Bing Ads:
++ Frequency: Daily or hourly, depending on requirements and API limits.
++ Volume: Similar to Google Ads, ranging from megabytes to gigabytes.
++ TikTok Ads:
++ Frequency: Daily or hourly, depending on requirements and API limits.
++ Volume: Similar to other ad platforms, ranging from megabytes to gigabytes.
+
+Integrating and Transforming Data
+
+After pulling the data:
+
+1. Store Data in BigQuery: Each API pull stores data in designated tables within your BigQuery dataset.
+2. Transform Using Dataform: Schedule Dataform transformations to standardize and combine data from different sources.
+3. Create Combined Metrics: Use SQL and JavaScript in Dataform to compute combined metrics, ensuring that transformations run after data pulls to keep data fresh.
+
+Monitoring and Optimization
+
++ API Rate Limits: Monitor API usage to avoid exceeding rate limits.
++ Data Freshness: Ensure that data pull schedules and transformations align to keep insights up-to-date.
++ Cost Management: Monitor storage and query costs in BigQuery, optimizing data pulls and transformations to balance freshness with cost efficiency.
+
+By setting up this process, you can efficiently integrate and analyze ad data from multiple platforms, enabling comprehensive and actionable insights.
+
+Estimating the number of rows, columns, and storage in megabytes per day for each vendor involves making assumptions based on available public data and typical usage patterns. Here’s a detailed estimate for each vendor:
+
+Assumptions
+
+1. Average Columns per Record:
++ Each ad platform typically tracks metrics such as impressions, clicks, conversions, cost, ad ID, campaign ID, timestamp, and more.
++ Assume each record has about 15 columns.
+2. Average Row Size:
++ Assume each column has an average size of 50 bytes (including overhead).
++ Each row would be approximately 15 columns * 50 bytes = 750 bytes.
+3. Number of Campaigns:
++ Assume an average company runs 20 campaigns per platform.
+4. Daily Metrics per Campaign:
++ Impressions: 20,000
++ Clicks: 2,000
++ Conversions: 100
+5. Data Points per Campaign:
++ Each impression, click, and conversion is a separate data point.
+
+Estimates for Each Vendor
+
+Google Ads
+
++ Rows per Day:
++ Impressions: 20 \text{ campaigns} \times 20,000 \text{ impressions}
++ Clicks: 20 \text{ campaigns} \times 2,000 \text{ clicks}
++ Conversions: 20 \text{ campaigns} \times 100 \text{ conversions}
++ Total Rows: 20 \times (20,000 + 2,000 + 100) = 440,000 rows
++ Columns per Row: 15
++ Row Size: 750 bytes
++ Daily Storage: 440,000 \times 750 = 330,000,000 bytes ≈ 330 MB
+
+Facebook Ads
+
++ Rows per Day:
++ Similar to Google Ads
++ Total Rows: 440,000 rows
++ Columns per Row: 15
++ Row Size: 750 bytes
++ Daily Storage: 440,000 \times 750 = 330,000,000 bytes ≈ 330 MB
+
+Bing Ads
+
++ Rows per Day:
++ Similar to Google Ads
++ Total Rows: 440,000 rows
++ Columns per Row: 15
++ Row Size: 750 bytes
++ Daily Storage: 440,000 \times 750 = 330,000,000 bytes ≈ 330 MB
+
+TikTok Ads
+
++ Rows per Day:
++ Similar to Google Ads
++ Total Rows: 440,000 rows
++ Columns per Row: 15
++ Row Size: 750 bytes
++ Daily Storage: 440,000 \times 750 = 330,000,000 bytes ≈ 330 MB
+
+Total Storage Estimate per Day
+
+Summing up the daily storage for all platforms:
+
++ Google Ads: 330 MB
++ Facebook Ads: 330 MB
++ Bing Ads: 330 MB
++ TikTok Ads: 330 MB
++ Total Daily Storage: 4 \times 330 MB = 1320 MB ≈ 1.32 GB
+
+Total Monthly Storage Estimate
+
+Assuming 30 days in a month:
+
++ Total Monthly Storage: 1.32 \text{ GB/day} \times 30 \text{ days} = 39.6 GB
+
+To effectively manage and analyze ad data from various vendors in BigQuery, you’ll create separate tables for each vendor’s raw data and additional tables for the transformed data. Here’s a detailed description of the tables:
+
+Summary of Tables
+
+1. Raw Data Tables:
++ google_ads_data
++ facebook_ads_data
++ bing_ads_data
++ tiktok_ads_data
++ google_analytics_data
+2. Transformed Data Tables:
++ standardized_ads_data
++ combined_metrics
+
+1. Google Ads Data Table
+```
+CREATE TABLE `project_id.dataset_id.google_ads_data` (
+  ad_id STRING,
+  campaign_id STRING,
+  ad_group_id STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  date DATE,
+  account_id STRING,
+  other_metrics JSON
+);
+```
+2. Facebook Ads Data Table
+```
+CREATE TABLE `project_id.dataset_id.facebook_ads_data` (
+  ad_id STRING,
+  campaign_id STRING,
+  ad_set_id STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  date DATE,
+  account_id STRING,
+  other_metrics JSON
+);
+```
+3. Bing Ads Data Table
+```
+CREATE TABLE `project_id.dataset_id.bing_ads_data` (
+  ad_id STRING,
+  campaign_id STRING,
+  ad_group_id STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  date DATE,
+  account_id STRING,
+  other_metrics JSON
+);
+```
+4. TikTok Ads Data Table
+```
+CREATE TABLE `project_id.dataset_id.tiktok_ads_data` (
+  ad_id STRING,
+  campaign_id STRING,
+  ad_group_id STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  date DATE,
+  account_id STRING,
+  other_metrics JSON
+);
+```
+Table for Google Analytics Data
+```
+CREATE TABLE `project_id.dataset_id.google_analytics_data` (
+  date DATE,
+  session_id STRING,
+  user_id STRING,
+  sessions INT64,
+  bounce_rate FLOAT64,
+  avg_session_duration FLOAT64,
+  pageviews INT64,
+  revenue FLOAT64,
+  campaign_id STRING,
+  other_metrics JSON
+);
+```
+Tables for Transformed Data
+1. Standardized Ads Data Table
+```
+CREATE TABLE `project_id.dataset_id.standardized_ads_data` (
+  ad_id STRING,
+  campaign_id STRING,
+  platform STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  date DATE
+);
+```
+SQLX Transformation for Standardized Ads Data
+```
+config {
+  type: "table",
+  description: "Standardized ad data from multiple sources"
+}
+
+SELECT
+  ad_id,
+  campaign_id,
+  'Google Ads' AS platform,
+  impressions,
+  clicks,
+  conversions,
+  cost,
+  date
+FROM ${ref("google_ads_data")}
+UNION ALL
+SELECT
+  ad_id,
+  campaign_id,
+  'Facebook Ads' AS platform,
+  impressions,
+  clicks,
+  conversions,
+  cost,
+  date
+FROM ${ref("facebook_ads_data")}
+UNION ALL
+SELECT
+  ad_id,
+  campaign_id,
+  'Bing Ads' AS platform,
+  impressions,
+  clicks,
+  conversions,
+  cost,
+  date
+FROM ${ref("bing_ads_data")}
+UNION ALL
+SELECT
+  ad_id,
+  campaign_id,
+  'TikTok Ads' AS platform,
+  impressions,
+  clicks,
+  conversions,
+  cost,
+  date
+FROM ${ref("tiktok_ads_data")}
+```
+2. Combined Metrics Table
+```
+CREATE TABLE `project_id.dataset_id.combined_metrics` (
+  ad_id STRING,
+  campaign_id STRING,
+  platform STRING,
+  impressions INT64,
+  clicks INT64,
+  conversions INT64,
+  cost FLOAT64,
+  sessions INT64,
+  bounce_rate FLOAT64,
+  avg_session_duration FLOAT64,
+  pageviews INT64,
+  cpa FLOAT64,
+  revenue FLOAT64,
+  date DATE
+);
+```
+SQLX Transformation for Combined Metrics
+```
+config {
+  type: "table",
+  description: "Combined metrics with Google Analytics data"
+}
+
+SELECT
+  ads.ad_id,
+  ads.campaign_id,
+  ads.platform,
+  ads.impressions,
+  ads.clicks,
+  ads.conversions,
+  ads.cost,
+  ga.sessions,
+  ga.bounce_rate,
+  ga.avg_session_duration,
+  ga.pageviews,
+  ads.cost / ads.conversions AS cpa,
+  ga.revenue,
+  ads.date
+FROM ${ref("standardized_ads_data")} AS ads
+LEFT JOIN ${ref("google_analytics_data")} AS ga
+ON ads.date = ga.date AND ads.campaign_id = ga.campaign_id
+```
+We can combine these new metrics into a unified schema for a comprehensive view of ad performance. Here’s an example schema for the combined metrics table:
+```
+CREATE TABLE `project_id.dataset_id.combined_ad_metrics` (
+  platform STRING,
+  campaign_id STRING,
+  ad_conversion_rate FLOAT64,
+  ad_roi FLOAT64,
+  session_value FLOAT64,
+  ad_engagement_rate FLOAT64,
+  bounce_rate_per_ad_channel FLOAT64,
+  cross_channel_conversion_rate FLOAT64,
+  avg_session_duration_per_ad_channel FLOAT64,
+  ad_cpa FLOAT64,
+  date DATE
+);
+```
+To estimate the size, let’s assume the following:
+
+1. Number of Campaigns: 20 campaigns per platform.
+2. Number of Platforms: 4 platforms (Google Ads, Facebook Ads, Bing Ads, TikTok Ads).
+3. Number of Rows per Day: One row per campaign per platform per day.
++ 20 \text{ campaigns} \times 4 \text{ platforms} = 80 \text{ rows/day}
+4. Number of Rows per Week:
++ 80 \text{ rows/day} \times 7 \text{ days} = 560 \text{ rows/week}
+
+Columns and Row Size
+
+1. Columns: The combined table has 10 columns.
+2. Row Size Estimation:
++ Assume each string column (platform, campaign_id) is about 20 bytes.
++ Each float column is 8 bytes.
++ Date column is 8 bytes.
++ Total row size: 20 \text{ bytes} \times 2 + 8 \text{ bytes} \times 7 + 8 \text{ bytes} = 96 \text{ bytes/row}
+
+Total Storage Estimate for One Week
+
+1. Number of Rows per Week: 560 rows
+2. Total Storage:
+
+560 \text{ rows} \times 96 \text{ bytes/row} = 53,760 \text{ bytes} = 53.76 \text{ KB}
+
+
+Given the low volume, the data storage for one week is very small, approximately 54 KB.
+
+Example SQL to Populate the Combined Metrics Table
+
+Here’s an example of how you might populate this table with combined metrics data:
+```
+INSERT INTO `project_id.dataset_id.combined_ad_metrics` (
+  platform,
+  campaign_id,
+  ad_conversion_rate,
+  ad_roi,
+  session_value,
+  ad_engagement_rate,
+  bounce_rate_per_ad_channel,
+  cross_channel_conversion_rate,
+  avg_session_duration_per_ad_channel,
+  ad_cpa,
+  date
+)
+SELECT
+  ads.platform,
+  ads.campaign_id,
+  (SUM(ads.conversions) / SUM(ads.clicks)) * 100 AS ad_conversion_rate,
+  (SUM(ga.revenue) / SUM(ads.cost)) * 100 AS ad_roi,
+  (SUM(ga.revenue) / SUM(ga.sessions)) AS session_value,
+  (SUM(ads.engagements) / SUM(ads.impressions)) * 100 AS ad_engagement_rate,
+  (SUM(ga.single_page_sessions) / SUM(ga.sessions)) * 100 AS bounce_rate_per_ad_channel,
+  (SUM(ads.conversions) / SUM(ads.clicks)) * 100 AS cross_channel_conversion_rate,
+  (SUM(ga.total_session_duration) / SUM(ga.sessions)) AS avg_session_duration_per_ad_channel,
+  (SUM(ads.cost) / SUM(ads.conversions)) AS ad_cpa,
+  ads.date
+FROM 
+  `project_id.dataset_id.standardized_ads_data` AS ads
+JOIN 
+  `project_id.dataset_id.google_analytics_data` AS ga
+ON 
+  ads.date = ga.date AND ads.campaign_id = ga.campaign_id
+GROUP BY 
+  ads.platform, ads.campaign_id, ads.date;
+```
+To estimate the implications for size with quarter-hourly data aggregation, we need to adjust our calculations accordingly. Let’s go through the steps with this higher granularity.
+
+Assumptions
+
+1. Number of Campaigns: 20 campaigns per platform.
+2. Number of Platforms: 4 platforms (Google Ads, Facebook Ads, Bing Ads, TikTok Ads).
+3. Granularity: Quarter-hourly (every 15 minutes).
+4. Number of Aggregation Periods per Day: 24 hours * 4 periods per hour = 96 periods per day.
+
+Number of Rows per Day
+
++ Each campaign generates one row per period per platform.
++ For 20 campaigns on 4 platforms with 96 periods per day:
+
+\text{Number of rows per day} = 20 \text{ campaigns} \times 4 \text{ platforms} \times 96 \text{ periods/day} = 7,680 \text{ rows/day}
+
+
+Number of Rows per Week
+
++ Over a week (7 days):
+
+\text{Number of rows per week} = 7,680 \text{ rows/day} \times 7 \text{ days} = 53,760 \text{ rows/week}
+
+
+Columns and Row Size
+
+1. Columns: The combined table has 10 columns.
+2. Row Size Estimation:
++ String columns (platform, campaign_id): 20 bytes each.
++ Float columns (metrics like ad_conversion_rate, ad_roi, etc.): 8 bytes each.
++ Date column: 8 bytes.
++ Total row size:
+
+20 \text{ bytes} \times 2 + 8 \text{ bytes} \times 7 + 8 \text{ bytes} = 96 \text{ bytes/row}
+
+
+Total Storage Estimate for One Week
+
+1. Number of Rows per Week: 53,760 rows
+2. Total Storage:
+
+
+53,760 \text{ rows} \times 96 \text{ bytes/row} = 5,161,600 \text{ bytes} = 5.16 \text{ MB}
+
+
+Implications for Size of All Tables
+
+1. Google Ads Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 15 \text{ columns} \times 50 \text{ bytes} = 750 \text{ bytes/row}
++ Weekly Storage: 53,760 \text{ rows} \times 750 \text{ bytes} = 40,320,000 \text{ bytes} = 40.32 \text{ MB}
+2. Facebook Ads Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 750 bytes/row
++ Weekly Storage: 40.32 MB
+3. Bing Ads Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 750 bytes/row
++ Weekly Storage: 40.32 MB
+4. TikTok Ads Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 750 bytes/row
++ Weekly Storage: 40.32 MB
+5. Google Analytics Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 750 bytes/row
++ Weekly Storage: 40.32 MB
+6. Standardized Ads Data Table:
++ Rows per Week: 53,760
++ Columns: 15
++ Row Size: 750 bytes/row
++ Weekly Storage: 40.32 MB
+7. Combined Metrics Table:
++ Rows per Week: 53,760
++ Columns: 10
++ Row Size: 96 bytes/row
++ Weekly Storage: 5.16 MB
+
+Total Storage Estimate for All Tables for One Week
+
+1. Google Ads Data Table: 40.32 MB
+2. Facebook Ads Data Table: 40.32 MB
+3. Bing Ads Data Table: 40.32 MB
+4. TikTok Ads Data Table: 40.32 MB
+5. Google Analytics Data Table: 40.32 MB
+6. Standardized Ads Data Table: 40.32 MB
+7. Combined Metrics Table: 5.16 MB
+
+Total Weekly Storage: 6 \times 40.32 \text{ MB} + 5.16 \text{ MB} = 243.08 \text{ MB}
+
+With quarter-hourly data aggregation, the total storage requirement for one week across all tables is approximately 243.08 MB.
+
+The Standardized Ads Data Table serves as an intermediate table that consolidates and standardizes ad performance data from multiple advertising platforms (Google Ads, Facebook Ads, Bing Ads, TikTok Ads). The main purposes of this table are:
+
+1. Data Consistency: Ensures that data from different sources is uniform in format and structure, making it easier to analyze and compare.
+2. Unified Schema: Combines similar metrics (e.g., impressions, clicks, conversions) from different platforms into a common schema.
+3. Simplified Analysis: Facilitates streamlined and consistent analysis by providing a single point of reference for all ad performance data.
+4. Integration: Enables seamless integration with other datasets, such as Google Analytics data, to create comprehensive combined metrics.
+5. Preprocessing: Acts as a preprocessing step that cleans and organizes raw data before further transformations and calculations are performed.
+
+We’ll need to create view files for each table, a model file that includes these views, and a manifest file for the Data Product Explore and LookML Dashboard.
++ View Files: Define the schema and metrics for standardized_ads_data and combined_metrics.
++ Model File: Defines the explore for the data product, including the joins and relationships.
++ Manifest File: Defines the dashboard layout and elements, including filters and single value displays for key metrics.
+
+
+
