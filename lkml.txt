@@ -1,0 +1,1170 @@
+1. View File for Standardized Ads Data Table
+
+standardized_ads_data.view.lkml
+```
+view: standardized_ads_data {
+  sql_table_name: `project_id.dataset_id.standardized_ads_data` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: impressions {
+    type: sum
+    sql: ${TABLE}.impressions ;;
+  }
+
+  measure: clicks {
+    type: sum
+    sql: ${TABLE}.clicks ;;
+  }
+
+  measure: conversions {
+    type: sum
+    sql: ${TABLE}.conversions ;;
+  }
+
+  measure: cost {
+    type: sum
+    sql: ${TABLE}.cost ;;
+  }
+}
+```
+2. View File for Combined Metrics Table
+combined_metrics.view.lkml
+```
+view: combined_metrics {
+  sql_table_name: `project_id.dataset_id.combined_ad_metrics` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: ad_conversion_rate {
+    type: number
+    sql: ${TABLE}.ad_conversion_rate ;;
+  }
+
+  measure: ad_roi {
+    type: number
+    sql: ${TABLE}.ad_roi ;;
+  }
+
+  measure: session_value {
+    type: number
+    sql: ${TABLE}.session_value ;;
+  }
+
+  measure: ad_engagement_rate {
+    type: number
+    sql: ${TABLE}.ad_engagement_rate ;;
+  }
+
+  measure: bounce_rate_per_ad_channel {
+    type: number
+    sql: ${TABLE}.bounce_rate_per_ad_channel ;;
+  }
+
+  measure: cross_channel_conversion_rate {
+    type: number
+    sql: ${TABLE}.cross_channel_conversion_rate ;;
+  }
+
+  measure: avg_session_duration_per_ad_channel {
+    type: number
+    sql: ${TABLE}.avg_session_duration_per_ad_channel ;;
+  }
+
+  measure: ad_cpa {
+    type: number
+    sql: ${TABLE}.ad_cpa ;;
+  }
+}
+```
+3. Model File
+data_product.model.lkml
+```
+connection: "bigquery_connection"
+
+include: "/views/standardized_ads_data.view"
+include: "/views/combined_metrics.view"
+
+explore: data_product_explore {
+  label: "Data Product Explore"
+  description: "Explore for Data Product combining ad metrics and Google Analytics data"
+
+  join: standardized_ads_data {
+    sql_on: ${data_product_explore.campaign_id} = ${standardized_ads_data.campaign_id} ;;
+    relationship: many_to_one
+  }
+
+  join: combined_metrics {
+    sql_on: ${data_product_explore.campaign_id} = ${combined_metrics.campaign_id} ;;
+    relationship: many_to_one
+  }
+}
+```
+4. Manifest File
+manifest.lkml
+```
+project_name: "data_product_project"
+
+models: {
+  data_product: {
+    label: "Data Product"
+    includes: ["data_product_explore"]
+  }
+}
+
+dashboard: data_product_dashboard {
+  title: "Data Product LookML Dashboard"
+  layout: fluid
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "platform"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "date"
+    }
+  ]
+  elements: [
+    {
+      title: "Ad Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "ad_conversion_rate"
+    },
+    {
+      title: "Ad ROI"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "ad_roi"
+    },
+    {
+      title: "Session Value"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "session_value"
+    },
+    {
+      title: "Ad Engagement Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "ad_engagement_rate"
+    },
+    {
+      title: "Bounce Rate per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "bounce_rate_per_ad_channel"
+    },
+    {
+      title: "Cross-Channel Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "cross_channel_conversion_rate"
+    },
+    {
+      title: "Average Session Duration per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "avg_session_duration_per_ad_channel"
+    },
+    {
+      title: "Ad Cost per Acquisition (CPA)"
+      type: "single_value"
+      model: "data_product"
+      explore: "data_product_explore"
+      field: "ad_cpa"
+    }
+  ]
+}
+```
+
+LookML dashboard definition for the combined_metrics table.
+
++ Filters:
++ campaign_id: Allows filtering by specific campaign IDs.
++ platform: Allows filtering by specific advertising platforms (e.g., Google Ads, Facebook Ads).
++ date: Allows filtering by specific date ranges.
++ Elements:
++ Each element represents a key metric (e.g., Ad Conversion Rate, Ad ROI) displayed as a single value visualization.
++ The elements are filtered based on the selected filter values to provide relevant insights.
+
+combined_metrics_dashboard.dashboard.lkml
+```
+dashboard: combined_metrics_dashboard {
+  title: "Combined Metrics Dashboard"
+  description: "Dashboard for key metrics derived from combined ad data"
+
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.platform"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.date"
+    }
+  ]
+
+  elements: [
+    {
+      title: "Ad Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad ROI"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_roi"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Session Value"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.session_value"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Engagement Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_engagement_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Bounce Rate per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.bounce_rate_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Cross-Channel Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.cross_channel_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Average Session Duration per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.avg_session_duration_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Cost per Acquisition (CPA)"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_cpa"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    }
+  ]
+}
+```
+To securely deliver each customer’s data through the Looker UI while using the same pipeline, BigQuery connection, and dashboard, you can use Looker User Attributes to implement row-level security. This setup ensures that each customer only sees their data. Here’s how you can do it:
+
+Step-by-Step Guide
+
+1. Define User Attributes in Looker
++ Create a user attribute for each customer to identify which data they can access. For example, create a user attribute named customer_id.
+2. Assign User Attributes to Users
++ Assign the customer_id attribute to each user in Looker based on the customer they belong to. For example, set the customer_id attribute to customer1 for users of Customer 1, customer2 for users of Customer 2, and so on.
+3. Modify the LookML Model to Use User Attributes
++ Update your LookML model to use the customer_id user attribute to filter data.
+
+Example Implementation
+
+1. Create User Attributes
+
++ Navigate to Admin > User Attributes in Looker.
++ Create a new user attribute called customer_id.
+
+2. Assign User Attributes to Users
+
++ Navigate to Admin > Users in Looker.
++ Assign the customer_id attribute to each user with the appropriate value.
+
+3. Modify the LookML Model
+
+standardized_ads_data.view.lkml
+```
+view: standardized_ads_data {
+  sql_table_name: `project_id.dataset_id.standardized_ads_data` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: impressions {
+    type: sum
+    sql: ${TABLE}.impressions ;;
+  }
+
+  measure: clicks {
+    type: sum
+    sql: ${TABLE}.clicks ;;
+  }
+
+  measure: conversions {
+    type: sum
+    sql: ${TABLE}.conversions ;;
+  }
+
+  measure: cost {
+    type: sum
+    sql: ${TABLE}.cost ;;
+  }
+
+  dimension: customer_id {
+    hidden: yes
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  access_filter: customer_id {
+    user_attribute: customer_id
+  }
+}
+```
+combined_metrics.view.lkml
+```
+view: combined_metrics {
+  sql_table_name: `project_id.dataset_id.combined_ad_metrics` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: ad_conversion_rate {
+    type: number
+    sql: ${TABLE}.ad_conversion_rate ;;
+  }
+
+  measure: ad_roi {
+    type: number
+    sql: ${TABLE}.ad_roi ;;
+  }
+
+  measure: session_value {
+    type: number
+    sql: ${TABLE}.session_value ;;
+  }
+
+  measure: ad_engagement_rate {
+    type: number
+    sql: ${TABLE}.ad_engagement_rate ;;
+  }
+
+  measure: bounce_rate_per_ad_channel {
+    type: number
+    sql: ${TABLE}.bounce_rate_per_ad_channel ;;
+  }
+
+  measure: cross_channel_conversion_rate {
+    type: number
+    sql: ${TABLE}.cross_channel_conversion_rate ;;
+  }
+
+  measure: avg_session_duration_per_ad_channel {
+    type: number
+    sql: ${TABLE}.avg_session_duration_per_ad_channel ;;
+  }
+
+  measure: ad_cpa {
+    type: number
+    sql: ${TABLE}.ad_cpa ;;
+  }
+
+  dimension: customer_id {
+    hidden: yes
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  access_filter: customer_id {
+    user_attribute: customer_id
+  }
+}
+```
+4. Model File with User Attribute Filters
+
+data_product.model.lkml
+```
+connection: "bigquery_connection"
+
+include: "/views/standardized_ads_data.view"
+include: "/views/combined_metrics.view"
+
+explore: standardized_ads_data {
+  label: "Standardized Ads Data"
+  description: "Explore for standardized ads data with customer-specific access"
+}
+
+explore: combined_metrics {
+  label: "Combined Metrics"
+  description: "Explore for combined metrics with customer-specific access"
+}
+```
+
+BigQuery ML Models for Conversion Rate and Time Forecasting
+
++ Logistic Regression Model: Predicts the likelihood of a high conversion rate based on various features from the combined_metrics table.
++ ARIMA_PLUS Model: Provides time series forecasting for the ad_conversion_rate over a specified horizon.
+
+Logistic Regression Model for Binary Classification
+
+1. Data Preparation
+
+First, we need to prepare the data by creating a binary target column (target_high_conversion_rate). Let’s assume a threshold conversion rate of 5% for this example.
+```
+-- Step 1: Create a training table with the binary target column
+CREATE OR REPLACE TABLE `project_id.dataset_id.combined_metrics_training` AS
+SELECT
+  platform,
+  campaign_id,
+  ad_conversion_rate,
+  ad_roi,
+  session_value,
+  ad_engagement_rate,
+  bounce_rate_per_ad_channel,
+  cross_channel_conversion_rate,
+  avg_session_duration_per_ad_channel,
+  ad_cpa,
+  IF(ad_conversion_rate > 5, 1, 0) AS target_high_conversion_rate
+FROM
+  `project_id.dataset_id.combined_metrics`;
+```
+2. Train the Logistic Regression Model
+```
+-- Step 2: Create and train the logistic regression model
+CREATE OR REPLACE MODEL `project_id.dataset_id.logistic_regression_model`
+OPTIONS (
+  model_type = 'logistic_reg',
+  input_label_cols = ['target_high_conversion_rate']
+) AS
+SELECT
+  platform,
+  ad_conversion_rate,
+  ad_roi,
+  session_value,
+  ad_engagement_rate,
+  bounce_rate_per_ad_channel,
+  cross_channel_conversion_rate,
+  avg_session_duration_per_ad_channel,
+  ad_cpa,
+  target_high_conversion_rate
+FROM
+  `project_id.dataset_id.combined_metrics_training`;
+```
+3. Make Predictions with the Logistic Regression Model
+```
+-- Step 3: Use the logistic regression model to make predictions
+SELECT
+  platform,
+  campaign_id,
+  ad_conversion_rate,
+  ad_roi,
+  session_value,
+  ad_engagement_rate,
+  bounce_rate_per_ad_channel,
+  cross_channel_conversion_rate,
+  avg_session_duration_per_ad_channel,
+  ad_cpa,
+  predicted_target_high_conversion_rate,
+  predicted_target_high_conversion_rate_probs
+FROM
+  ML.PREDICT(MODEL `project_id.dataset_id.logistic_regression_model`,
+  (
+    SELECT
+      platform,
+      campaign_id,
+      ad_conversion_rate,
+      ad_roi,
+      session_value,
+      ad_engagement_rate,
+      bounce_rate_per_ad_channel,
+      cross_channel_conversion_rate,
+      avg_session_duration_per_ad_channel,
+      ad_cpa
+    FROM
+      `project_id.dataset_id.combined_metrics`
+  ));
+```
+ARIMA_PLUS Model for Time Series Forecasting
+
+1. Data Preparation
+
+Prepare the data by ensuring it has a time column and the target metric to forecast. For this example, let’s forecast ad_conversion_rate.
+```
+-- Step 1: Create a time series table
+CREATE OR REPLACE TABLE `project_id.dataset_id.combined_metrics_time_series` AS
+SELECT
+  date,
+  campaign_id,
+  ad_conversion_rate
+FROM
+  `project_id.dataset_id.combined_metrics`
+ORDER BY
+  date;
+```
+2. Train the ARIMA_PLUS Model
+```
+-- Step 2: Create and train the ARIMA_PLUS model
+CREATE OR REPLACE MODEL `project_id.dataset_id.arima_plus_model`
+OPTIONS (
+  model_type = 'arima_plus',
+  time_series_timestamp_col = 'date',
+  time_series_data_col = 'ad_conversion_rate',
+  time_series_id_col = 'campaign_id'
+) AS
+SELECT
+  date,
+  campaign_id,
+  ad_conversion_rate
+FROM
+  `project_id.dataset_id.combined_metrics_time_series`;
+```
+3. Make Forecasts with the ARIMA_PLUS Model
+```
+-- Step 3: Use the ARIMA_PLUS model to make forecasts
+SELECT
+  *
+FROM
+  ML.FORECAST(MODEL `project_id.dataset_id.arima_plus_model`,
+  STRUCT(30 AS horizon, 0.8 AS confidence_level));
+```
+The provided SQL scripts will create new tables and models without amending existing tables. Here’s a breakdown of what each step does:
+
+Logistic Regression Model
+
+1.	Data Preparation:
++ Creates a new table combined_metrics_training with the binary target column.
+2.	Train the Logistic Regression Model:
++ Creates a new ML model logistic_regression_model.
+3.	Make Predictions with the Logistic Regression Model:
++ Generates predictions but does not create a new table; instead, it provides a query result set.
+
+ARIMA_PLUS Model
+
+1.	Data Preparation:
++ Creates a new table combined_metrics_time_series.
+2.	Train the ARIMA_PLUS Model:
++ Creates a new ML model arima_plus_model.
+3.	Make Forecasts with the ARIMA_PLUS Model:
++ Generates forecasts but does not create a new table; instead, it provides a query result set.
+
+Summary
++ New Tables:
++ combined_metrics_training: Created for the logistic regression model.
++ combined_metrics_time_series: Created for the ARIMA_PLUS model.
++ New Models:
++ logistic_regression_model: Logistic regression model.
++ arima_plus_model: ARIMA_PLUS time series forecasting model.
++ Query Result Sets:
++ Predictions and forecasts are generated as query results, not stored in new tables by default. If needed, these results can be stored in new tables using CREATE TABLE AS SELECT or INSERT INTO.
+
+1. View File for Logistic Regression Predictions
+
+logistic_regression_predictions.view.lkml
+```
+view: logistic_regression_predictions {
+  sql_table_name: `project_id.dataset_id.logistic_regression_predictions` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: ad_conversion_rate {
+    type: number
+    sql: ${TABLE}.ad_conversion_rate ;;
+  }
+
+  dimension: ad_roi {
+    type: number
+    sql: ${TABLE}.ad_roi ;;
+  }
+
+  dimension: session_value {
+    type: number
+    sql: ${TABLE}.session_value ;;
+  }
+
+  dimension: ad_engagement_rate {
+    type: number
+    sql: ${TABLE}.ad_engagement_rate ;;
+  }
+
+  dimension: bounce_rate_per_ad_channel {
+    type: number
+    sql: ${TABLE}.bounce_rate_per_ad_channel ;;
+  }
+
+  dimension: cross_channel_conversion_rate {
+    type: number
+    sql: ${TABLE}.cross_channel_conversion_rate ;;
+  }
+
+  dimension: avg_session_duration_per_ad_channel {
+    type: number
+    sql: ${TABLE}.avg_session_duration_per_ad_channel ;;
+  }
+
+  dimension: ad_cpa {
+    type: number
+    sql: ${TABLE}.ad_cpa ;;
+  }
+
+  measure: predicted_target_high_conversion_rate {
+    type: yesno
+    sql: ${TABLE}.predicted_target_high_conversion_rate ;;
+  }
+
+  measure: predicted_target_high_conversion_rate_probs {
+    type: number
+    sql: ${TABLE}.predicted_target_high_conversion_rate_probs ;;
+  }
+}
+```
+2. View File for ARIMA_PLUS Forecasts
+
+arima_plus_forecasts.view.lkml
+```
+view: arima_plus_forecasts {
+  sql_table_name: `project_id.dataset_id.arima_plus_forecasts` ;;
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  measure: forecast_value {
+    type: number
+    sql: ${TABLE}.forecast_value ;;
+  }
+
+  measure: confidence_interval_lower_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_lower_bound ;;
+  }
+
+  measure: confidence_interval_upper_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_upper_bound ;;
+  }
+}
+```
+view: arima_plus_forecasts {
+  sql_table_name: `project_id.dataset_id.arima_plus_forecasts` ;;
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  measure: forecast_value {
+    type: number
+    sql: ${TABLE}.forecast_value ;;
+  }
+
+  measure: confidence_interval_lower_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_lower_bound ;;
+  }
+
+  measure: confidence_interval_upper_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_upper_bound ;;
+  }
+}
+```
+view: arima_plus_forecasts {
+  sql_table_name: `project_id.dataset_id.arima_plus_forecasts` ;;
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  measure: forecast_value {
+    type: number
+    sql: ${TABLE}.forecast_value ;;
+  }
+
+  measure: confidence_interval_lower_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_lower_bound ;;
+  }
+
+  measure: confidence_interval_upper_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_upper_bound ;;
+  }
+}
+```
+3. Update the Model File
+
+data_product.model.lkml
+```
+connection: "bigquery_connection"
+
+include: "/views/standardized_ads_data.view"
+include: "/views/combined_metrics.view"
+include: "/views/logistic_regression_predictions.view"
+include: "/views/arima_plus_forecasts.view"
+
+explore: standardized_ads_data {
+  label: "Standardized Ads Data"
+  description: "Explore for standardized ads data with customer-specific access"
+}
+
+explore: combined_metrics {
+  label: "Combined Metrics"
+  description: "Explore for combined metrics with customer-specific access"
+}
+
+explore: logistic_regression_predictions {
+  label: "Logistic Regression Predictions"
+  description: "Explore for logistic regression predictions"
+}
+
+explore: arima_plus_forecasts {
+  label: "ARIMA_PLUS Forecasts"
+  description: "Explore for ARIMA_PLUS time series forecasts"
+}
+```
+4. Update the Manifest File
+
+manifest.lkml
+```
+project_name: "data_product_project"
+
+models: {
+  data_product: {
+    label: "Data Product"
+    includes: ["data_product_explore", "logistic_regression_predictions", "arima_plus_forecasts"]
+  }
+}
+
+dashboard: combined_metrics_dashboard {
+  title: "Combined Metrics Dashboard"
+  layout: fluid
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.platform"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.date"
+    }
+  ]
+  elements: [
+    {
+      title: "Ad Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad ROI"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_roi"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Session Value"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.session_value"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Engagement Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_engagement_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Bounce Rate per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.bounce_rate_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Cross-Channel Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.cross_channel_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Average Session Duration per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.avg_session_duration_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Cost per Acquisition (CPA)"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_cpa"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Predicted High Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.predicted_target_high_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "logistic_regression_predictions.campaign_id"},
+        {name: "platform", field: "logistic_regression_predictions.platform"},
+        {name: "date", field: "logistic_regression_predictions.date"}
+      ]
+    },
+    {
+      title: "Forecasted Conversion Rate"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.forecast_value"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    }
+  ]
+}
+```
+
+logistic_regression_predictions_dashboard.dashboard.lkml
+```
+dashboard: logistic_regression_predictions_dashboard {
+  title: "Logistic Regression Predictions Dashboard"
+  description: "Dashboard for predictions from logistic regression model"
+  
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.platform"
+    }
+  ]
+  
+  elements: [
+    {
+      title: "Predicted High Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.predicted_target_high_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "logistic_regression_predictions.campaign_id"},
+        {name: "platform", field: "logistic_regression_predictions.platform"}
+      ]
+    },
+    {
+      title: "Predicted High Conversion Rate Probability"
+      type: "single_value"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.predicted_target_high_conversion_rate_probs"
+      filters: [
+        {name: "campaign_id", field: "logistic_regression_predictions.campaign_id"},
+        {name: "platform", field: "logistic_regression_predictions.platform"}
+      ]
+    }
+  ]
+}
+```
+3. ARIMA_PLUS Forecasts Dashboard
+
+arima_plus_forecasts_dashboard.dashboard.lkml
+```
+dashboard: arima_plus_forecasts_dashboard {
+  title: "ARIMA_PLUS Forecasts Dashboard"
+  description: "Dashboard for ARIMA_PLUS time series forecasts"
+  
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.campaign_id"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.date"
+    }
+  ]
+  
+  elements: [
+    {
+      title: "Forecasted Conversion Rate"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.forecast_value"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    },
+    {
+      title: "Confidence Interval Lower Bound"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.confidence_interval_lower_bound"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    },
+    {
+      title: "Confidence Interval Upper Bound"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.confidence_interval_upper_bound"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    }
+  ]
+}
+```
