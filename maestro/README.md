@@ -36,11 +36,11 @@ This project demonstrates how to use the Maestro framework to build a powerful A
 3. **Configure API Keys:** 
    - Create a `.env` file in your project root with the following content:
      ```
-     OPENAI_API_KEY=sk-proj-umcSUEXshw0BlBdRTwVjT3BlbkFJVN35aT9Kov7VEhdMaWCc
-     ANTHROPIC_API_KEY=sk-ant-api03-qr0aHmLaxzPGPOJjZlegj_
+     OPENAI_API_KEY=%%%
+     ANTHROPIC_API_KEY=%%%
 
-     TAVILY_API_KEY=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
-     DEEPSEEK_API_KEY=sk-489da22c32304498940fa30b016bed59 
+     TAVILY_API_KEY=%%%
+     DEEPSEEK_API_KEY=%%% 
      ```
 4. **Start MemGPT Server (optional):**
    - If you want to use the MemGPT agent, follow the instructions in the MemGPT README: [https://github.com/cpacker/MemGPT](https://github.com/cpacker/MemGPT)
