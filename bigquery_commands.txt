@@ -26,29 +26,29 @@ bq mk --table \
 # Load GA4 data
 bq load --source_format=GOOGLE_SHEETS \
     mediaconfidant:google_analytics_dataset.GA4 \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit?usp=sharing" \
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=0" \
     GA4
 
 # Load Google_Ads data
 bq load --source_format=GOOGLE_SHEETS \
     mediaconfidant:google_ads_dataset.Google_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit?usp=sharing" \
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=1" \
     Google_Ads
 
 # Load Bing_Ads data
 bq load --source_format=GOOGLE_SHEETS \
     mediaconfidant:bing_ads_dataset.Bing_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit?usp=sharing" \
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=2" \
     Bing_Ads
 
 # Load Facebook_Ads data
 bq load --source_format=GOOGLE_SHEETS \
     mediaconfidant:facebook_ads_dataset.Facebook_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit?usp=sharing" \
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=3" \
     Facebook_Ads
 
 # Load TikTok_Ads data
 bq load --source_format=GOOGLE_SHEETS \
     mediaconfidant:tiktok_ads_dataset.TikTok_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit?usp=sharing" \
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=4" \
     TikTok_Ads
