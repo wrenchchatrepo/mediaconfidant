@@ -24,26 +24,26 @@ bq mk --table \
     gclid:STRING,UserListDateRuleItemInfo:TIMESTAMP,EventItemAttribute:STRING,Money:FLOAT,DeviceCategory:STRING,MobileDeviceInfo:STRING,OperatingSystemVersionInfo:STRING,BrowserVersionInfo:STRING,GeoPointInfo:STRING,GeoPointInfoState:STRING,GeoPointInfoCity:STRING
 
 # Load GA4 data
-bq load --autodetect \
+bq load --source_format=CSV \
     mediaconfidant:google_analytics_dataset.GA4 \
     "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=0"
 
 # Load Google_Ads data
-bq load --autodetect \
+bq load --source_format=CSV \
     mediaconfidant:google_ads_dataset.Google_Ads \
     "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=1"
 
 # Load Bing_Ads data
-bq load --autodetect \
+bq load --source_format=CSV \
     mediaconfidant:bing_ads_dataset.Bing_Ads \
     "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=2"
 
 # Load Facebook_Ads data
-bq load --autodetect \
+bq load --source_format=CSV \
     mediaconfidant:facebook_ads_dataset.Facebook_Ads \
     "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=3"
 
 # Load TikTok_Ads data
-bq load --autodetect \
+bq load --source_format=CSV \
     mediaconfidant:tiktok_ads_dataset.TikTok_Ads \
     "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=4"
