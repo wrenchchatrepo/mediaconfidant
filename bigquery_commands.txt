@@ -24,31 +24,26 @@ bq mk --table \
     gclid:STRING,UserListDateRuleItemInfo:TIMESTAMP,EventItemAttribute:STRING,Money:FLOAT,DeviceCategory:STRING,MobileDeviceInfo:STRING,OperatingSystemVersionInfo:STRING,BrowserVersionInfo:STRING,GeoPointInfo:STRING,GeoPointInfoState:STRING,GeoPointInfoCity:STRING
 
 # Load GA4 data
-bq load --source_format=GOOGLE_SHEETS \
+bq load --autodetect \
     mediaconfidant:google_analytics_dataset.GA4 \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=0" \
-    GA4
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=0"
 
 # Load Google_Ads data
-bq load --source_format=GOOGLE_SHEETS \
+bq load --autodetect \
     mediaconfidant:google_ads_dataset.Google_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=1" \
-    Google_Ads
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=1"
 
 # Load Bing_Ads data
-bq load --source_format=GOOGLE_SHEETS \
+bq load --autodetect \
     mediaconfidant:bing_ads_dataset.Bing_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=2" \
-    Bing_Ads
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=2"
 
 # Load Facebook_Ads data
-bq load --source_format=GOOGLE_SHEETS \
+bq load --autodetect \
     mediaconfidant:facebook_ads_dataset.Facebook_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=3" \
-    Facebook_Ads
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=3"
 
 # Load TikTok_Ads data
-bq load --source_format=GOOGLE_SHEETS \
+bq load --autodetect \
     mediaconfidant:tiktok_ads_dataset.TikTok_Ads \
-    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/edit#gid=4" \
-    TikTok_Ads
+    "https://docs.google.com/spreadsheets/d/1qmk4HCRPIrz91FBoxe6ez2Nmh3bO3N3osU5fvw-azaQ/export?format=csv&gid=4"
