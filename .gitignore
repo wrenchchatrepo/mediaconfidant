@@ -384,3 +384,4 @@ FodyWeavers.xsd
 
 # JetBrains specific
 # See https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+.aider*

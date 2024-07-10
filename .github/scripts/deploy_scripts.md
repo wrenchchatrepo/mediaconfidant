@@ -95,14 +95,10 @@ gcloud scheduler jobs create http facebook-ads-transfer \
     --message-body='{"dataSourceId": "facebook_ads", "params": {"name": "Facebook Ads Transfer"}}' \
     --oauth-service-account-email="${Service_Account}"
 
-
-
-
 gcloud iam service-accounts list --project=mediaconfidant
 
 gcloud projects add-iam-policy-binding mediaconfidant \    --member=serviceAccount:707664316556-compute@developer.gserviceaccount.com \
     --role=roles/composer.worker
-
 
 gcloud composer environments create mediaconfidant-env \
     --location=us-central1 \
@@ -112,22 +108,6 @@ gcloud composer environments create mediaconfidant-env \
 
 gcloud composer environments describe mediaconfidant-env --location=us-central1
 
-
-
 gcloud composer environments describe mediaconfidant-env --location=us-central1
 
-
-
-
 gsutil cp /Users/dionedge/dev/customers/mediaconfidant/ga4_googleads_to_bigquery_dag.py gs://us-central1-mediaconfidant--c9c539d5-bucket/dags/
-
-
-
-
-
-
-
-
-
-
-
