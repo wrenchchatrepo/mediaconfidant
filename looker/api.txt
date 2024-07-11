@@ -1,0 +1,744 @@
+Steps to Use Looker API
+
+1. Set Up API Credentials:
++ Create an API client in Looker and obtain the client ID and client secret.
++ Ensure you have the necessary permissions to manage LookML files.
+2. Authenticate with the Looker API:
++ Use the API credentials to authenticate and get an access token.
+3. Use the API to Write LookML Files:
++ Use the Looker API to create or update LookML files in your project. Python scripts to include the LookML dashboards using the Looker SDK. The script will now create or update the necessary LookML view files, the model file, the manifest file, and the dashboard files
+
+1. Initialize the SDK and Authentication
+2. Create View File: standardized_ads_data.view.lkml
+3. Create View File: combined_metrics.view.lkml
+4. Create View File: logistic_regression_predictions.view.lkml
+5. Create View File: arima_plus_forecasts.view.lkml
+6. Create Model File
+7. Create Manifest File
+8. Create combined_metrics_dashboard.dashboard.lkml: create_combined_metrics_dashboard.py
+9. Create logistic_regression_predictions_dashboard.dashboard.lkml: create_logistic_regression_predictions_dashboard.py
+10. Create arima_plus_forecasts_dashboard.dashboard.lkml: create_arima_plus_forecasts_dashboard.py
+
+1. Initialize the SDK and Authentication
+initialize_sdk.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteGitBranch
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Authenticate and obtain the access token
+sdk.auth.login(
+    client_id='your_client_id',
+    client_secret='your_client_secret'
+)
+
+# Specify the project and branch
+project = "your_project_name"
+branch_name = "new_branch"
+
+# Create or switch to a new Git branch
+sdk.update_git_branch(project_id=project, body=WriteGitBranch(name=branch_name))
+
+print("SDK initialized and authenticated successfully.")
+```
+2. Create View File: standardized_ads_data.view.lkml
+create_standardized_ads_data_view.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# View content for standardized_ads_data
+view_standardized_ads_data = """
+view: standardized_ads_data {
+  sql_table_name: `project_id.dataset_id.standardized_ads_data` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: impressions {
+    type: sum
+    sql: ${TABLE}.impressions ;;
+  }
+
+  measure: clicks {
+    type: sum
+    sql: ${TABLE}.clicks ;;
+  }
+
+  measure: conversions {
+    type: sum
+    sql: ${TABLE}.conversions ;;
+  }
+
+  measure: cost {
+    type: sum
+    sql: ${TABLE}.cost ;;
+  }
+
+  dimension: customer_id {
+    hidden: yes
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  access_filter: customer_id {
+    user_attribute: customer_id
+  }
+}
+"""
+
+# Create or update the view file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="view",
+        path="views/standardized_ads_data.view.lkml",
+        content=view_standardized_ads_data
+    )
+)
+
+print("standardized_ads_data view file created successfully.")
+```
+3. Create View File: combined_metrics.view.lkml
+create_combined_metrics_view.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# View content for combined_metrics
+view_combined_metrics = """
+view: combined_metrics {
+  sql_table_name: `project_id.dataset_id.combined_ad_metrics` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    primary_key: yes
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  measure: ad_conversion_rate {
+    type: number
+    sql: ${TABLE}.ad_conversion_rate ;;
+  }
+
+  measure: ad_roi {
+    type: number
+    sql: ${TABLE}.ad_roi ;;
+  }
+
+  measure: session_value {
+    type: number
+    sql: ${TABLE}.session_value ;;
+  }
+
+  measure: ad_engagement_rate {
+    type: number
+    sql: ${TABLE}.ad_engagement_rate ;;
+  }
+
+  measure: bounce_rate_per_ad_channel {
+    type: number
+    sql: ${TABLE}.bounce_rate_per_ad_channel ;;
+  }
+
+  measure: cross_channel_conversion_rate {
+    type: number
+    sql: ${TABLE}.cross_channel_conversion_rate ;;
+  }
+
+  measure: avg_session_duration_per_ad_channel {
+    type: number
+    sql: ${TABLE}.avg_session_duration_per_ad_channel ;;
+  }
+
+  measure: ad_cpa {
+    type: number
+    sql: ${TABLE}.ad_cpa ;;
+  }
+
+  dimension: customer_id {
+    hidden: yes
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  access_filter: customer_id {
+    user_attribute: customer_id
+  }
+}
+"""
+
+# Create or update the view file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="view",
+        path="views/combined_metrics.view.lkml",
+        content=view_combined_metrics
+    )
+)
+
+print("combined_metrics view file created successfully.")
+```
+4. Create View File: logistic_regression_predictions.view.lkml
+create_logistic_regression_predictions_view.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# View content for logistic_regression_predictions
+view_logistic_regression_predictions = """
+view: logistic_regression_predictions {
+  sql_table_name: `project_id.dataset_id.logistic_regression_predictions` ;;
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.platform ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: ad_conversion_rate {
+    type: number
+    sql: ${TABLE}.ad_conversion_rate ;;
+  }
+
+  dimension: ad_roi {
+    type: number
+    sql: ${TABLE}.ad_roi ;;
+  }
+
+  dimension: session_value {
+    type: number
+    sql: ${TABLE}.session_value ;;
+  }
+
+  dimension: ad_engagement_rate {
+    type: number
+    sql: ${TABLE}.ad_engagement_rate ;;
+  }
+
+  dimension: bounce_rate_per_ad_channel {
+    type: number
+    sql: ${TABLE}.bounce_rate_per_ad_channel ;;
+  }
+
+  dimension: cross_channel_conversion_rate {
+    type: number
+    sql: ${TABLE}.cross_channel_conversion_rate ;;
+  }
+
+  dimension: avg_session_duration_per_ad_channel {
+    type: number
+    sql: ${TABLE}.avg_session_duration_per_ad_channel ;;
+  }
+
+  dimension: ad_cpa {
+    type: number
+    sql: ${TABLE}.ad_cpa ;;
+  }
+
+  measure: predicted_target_high_conversion_rate {
+    type: yesno
+    sql: ${TABLE}.predicted_target_high_conversion_rate ;;
+  }
+
+  measure: predicted_target_high_conversion_rate_probs {
+    type: number
+    sql: ${TABLE}.predicted_target_high_conversion_rate_probs ;;
+  }
+}
+"""
+
+# Create or update the view file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="view",
+        path="views/logistic_regression_predictions.view.lkml",
+        content=view_logistic_regression_predictions
+    )
+)
+
+print("logistic_regression_predictions view file created successfully.")
+```
+5. Create View File: arima_plus_forecasts.view.lkml
+create_arima_plus_forecasts_view.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# View content for arima_plus_forecasts
+view_arima_plus_forecasts = """
+view: arima_plus_forecasts {
+  sql_table_name: `project_id.dataset_id.arima_plus_forecasts` ;;
+
+  dimension: date {
+    type: date
+    sql: ${TABLE}.date ;;
+  }
+
+  dimension: campaign_id {
+    type: string
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  measure: forecast_value {
+    type: number
+    sql: ${TABLE}.forecast_value ;;
+  }
+
+  measure: confidence_interval_lower_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_lower_bound ;;
+  }
+
+  measure: confidence_interval_upper_bound {
+    type: number
+    sql: ${TABLE}.confidence_interval_upper_bound ;;
+  }
+}
+"""
+
+# Create or update the view file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="view",
+        path="views/arima_plus_forecasts.view.lkml",
+        content=view_arima_plus_forecasts
+    )
+)
+
+print("arima_plus_forecasts view file created successfully.")
+```
+6. Create Model File
+create_model_file.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Model content
+model_file = """
+connection: "bigquery_connection"
+
+include: "/views/standardized_ads_data.view"
+include: "/views/combined_metrics.view"
+include: "/views/logistic_regression_predictions.view"
+include: "/views/arima_plus_forecasts.view"
+
+explore: standardized_ads_data {
+  label: "Standardized Ads Data"
+  description: "Explore for standardized ads data with customer-specific access"
+}
+
+explore: combined_metrics {
+  label: "Combined Metrics"
+  description: "Explore for combined metrics with customer-specific access"
+}
+
+explore: logistic_regression_predictions {
+  label: "Logistic Regression Predictions"
+  description: "Explore for logistic regression predictions"
+}
+
+explore: arima_plus_forecasts {
+  label: "ARIMA_PLUS Forecasts"
+  description: "Explore for ARIMA_PLUS time series forecasts"
+}
+"""
+
+# Create or update the model file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="model",
+        path="models/data_product
+```
+7. Create Manifest File
+create_manifest_file.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Manifest content
+manifest_file = """
+project_name: "data_product_project"
+
+models: {
+  data_product: {
+    label: "Data Product"
+    includes: ["data_product_explore", "logistic_regression_predictions", "arima_plus_forecasts"]
+  }
+}
+"""
+
+# Create or update the manifest file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="manifest",
+        path="manifest.lkml",
+        content=manifest_file
+    )
+)
+
+print("Manifest file created successfully.")
+```
+8. Create combined_metrics_dashboard.dashboard.lkml
+create_combined_metrics_dashboard.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Dashboard content for combined_metrics_dashboard
+combined_metrics_dashboard = """
+dashboard: combined_metrics_dashboard {
+  title: "Combined Metrics Dashboard"
+  description: "Dashboard for key metrics derived from combined ad data"
+  
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.platform"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.date"
+    }
+  ]
+  
+  elements: [
+    {
+      title: "Ad Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad ROI"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_roi"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Session Value"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.session_value"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Engagement Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_engagement_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Bounce Rate per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.bounce_rate_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Cross-Channel Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.cross_channel_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Average Session Duration per Ad Channel"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.avg_session_duration_per_ad_channel"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    },
+    {
+      title: "Ad Cost per Acquisition (CPA)"
+      type: "single_value"
+      model: "data_product"
+      explore: "combined_metrics"
+      field: "combined_metrics.ad_cpa"
+      filters: [
+        {name: "campaign_id", field: "combined_metrics.campaign_id"},
+        {name: "platform", field: "combined_metrics.platform"},
+        {name: "date", field: "combined_metrics.date"}
+      ]
+    }
+  ]
+}
+"""
+
+# Create or update the dashboard file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="dashboard",
+        path="dashboards/combined_metrics_dashboard.dashboard.lkml",
+        content=combined_metrics_dashboard
+    )
+)
+
+print("combined_metrics_dashboard created successfully.")
+```
+9. Create logistic_regression_predictions_dashboard.dashboard.lkml
+create_logistic_regression_predictions_dashboard.py
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Dashboard content for logistic_regression_predictions_dashboard
+logistic_regression_predictions_dashboard = """
+dashboard: logistic_regression_predictions_dashboard {
+  title: "Logistic Regression Predictions Dashboard"
+  description: "Dashboard for predictions from logistic regression model"
+  
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.campaign_id"
+    },
+    {
+      name: "platform"
+      title: "Platform"
+      type: "field_filter"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.platform"
+    }
+  ]
+  
+  elements: [
+    {
+      title: "Predicted High Conversion Rate"
+      type: "single_value"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.predicted_target_high_conversion_rate"
+      filters: [
+        {name: "campaign_id", field: "logistic_regression_predictions.campaign_id"},
+        {name: "platform", field: "logistic_regression_predictions.platform"}
+      ]
+    },
+    {
+      title: "Predicted High Conversion Rate Probability"
+      type: "single_value"
+      model: "data_product"
+      explore: "logistic_regression_predictions"
+      field: "logistic_regression_predictions.predicted_target_high_conversion_rate_probs"
+      filters: [
+        {name: "campaign_id", field: "logistic_regression_predictions.campaign_id"},
+        {name: "platform", field: "logistic_regression_predictions.platform"}
+      ]
+    }
+  ]
+}
+"""
+
+# Create or update the dashboard file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="dashboard",
+        path="dashboards/logistic_regression_predictions_dashboard.dashboard.lkml",
+        content=logistic_regression_predictions_dashboard
+    )
+)
+
+print("logistic_regression_predictions_dashboard created successfully.")
+```
+
+10. Create arima_plus_forecasts_dashboard.dashboard.lkml
+create_arima_plus_forecasts_dashboard.py 
+```
+import looker_sdk
+from looker_sdk.sdk.api40.models import WriteProjectFile
+
+# Initialize the Looker SDK
+sdk = looker_sdk.init40()
+
+# Dashboard content for arima_plus_forecasts_dashboard
+arima_plus_forecasts_dashboard = """
+dashboard: arima_plus_forecasts_dashboard {
+  title: "ARIMA_PLUS Forecasts Dashboard"
+  description: "Dashboard for ARIMA_PLUS time series forecasts"
+  
+  filters: [
+    {
+      name: "campaign_id"
+      title: "Campaign ID"
+      type: "field_filter"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.campaign_id"
+    },
+    {
+      name: "date"
+      title: "Date"
+      type: "date_filter"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.date"
+    }
+  ]
+  
+  elements: [
+    {
+      title: "Forecasted Conversion Rate"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.forecast_value"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    },
+    {
+      title: "Confidence Interval Lower Bound"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.confidence_interval_lower_bound"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    },
+    {
+      title: "Confidence Interval Upper Bound"
+      type: "timeseries"
+      model: "data_product"
+      explore: "arima_plus_forecasts"
+      field: "arima_plus_forecasts.confidence_interval_upper_bound"
+      filters: [
+        {name: "campaign_id", field: "arima_plus_forecasts.campaign_id"},
+        {name: "date", field: "arima_plus_forecasts.date"}
+      ]
+    }
+  ]
+}
+"""
+
+# Create or update the dashboard file
+sdk.create_project_file(
+    project_id='your_project_name',
+    body=WriteProjectFile(
+        file_type="dashboard",
+        path="dashboards/arima_plus_forecasts_dashboard.dashboard.lkml",
+        content=arima_plus_forecasts_dashboard
+    )
+)
+
+print("arima_plus_forecasts_dashboard created successfully.")
+```
