@@ -84,9 +84,11 @@ To get started with the project, follow these steps:
 
 ### Issues
 <!-- issueTable -->
-| Title                                                                                                  |         Status          | Assignee | Body           |
-| :----------------------------------------------------------------------------------------------------- | :---------------------: | :------: | :------------- |
-| <a href="https://github.com/wrenchchatrepo/orale_customer/issues/1">Just a test of a github action</a> | :eight_spoked_asterisk: |          | Please ignore. |
+
+| Title                                                                         |   Status   | Assignee | Body          |
+| :---------------------------------------------------------------------------- | :--------: | :------: | :------------ |
+| <a href="https://github.com/wrenchchatrepo/mediaconfidant/pull/1">Vendors</a> | :no_entry: |          | dataform init |
+
 <!-- issueTable -->
 
 ### Directory Structure
