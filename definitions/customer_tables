@@ -1,0 +1,90 @@
+config {
+  type: "table"
+}
+
+CREATE TABLE bing (
+  gclid STRING,
+  UserListDateRuleItemInfo TIMESTAMP,
+  EventItemAttribute STRING,
+  Money INT64,
+  DeviceCategory STRING,
+  MobileDeviceInfo STRING,
+  OperatingSystemVersionInfo STRING,
+  BrowserVersionInfo STRING,
+  GeoPointInfo STRING,
+  eoPointInfoState STRING,
+  GeoPointInfoCity STRING
+);
+
+config {
+  type: "table"
+}
+
+CREATE TABLE google (
+  gclid STRING,
+  UserListDateRuleItemInfo TIMESTAMP,
+  EventItemAttribute STRING,
+  Money INT64,
+  DeviceCategory STRING,
+  MobileDeviceInfo STRING,
+  OperatingSystemVersionInfo STRING,
+  BrowserVersionInfo STRING,
+  GeoPointInfo STRING,
+  eoPointInfoState STRING,
+  GeoPointInfoCity STRING
+);
+
+config {
+  type: "table"
+}
+
+CREATE TABLE tiktok (
+  gclid STRING,
+  UserListDateRuleItemInfo TIMESTAMP,
+  EventItemAttribute STRING,
+  Money INT64,
+  DeviceCategory STRING,
+  MobileDeviceInfo STRING,
+  OperatingSystemVersionInfo STRING,
+  BrowserVersionInfo STRING,
+  GeoPointInfo STRING,
+  eoPointInfoState STRING,
+  GeoPointInfoCity STRING
+);
+
+config {
+  type: "table"
+}
+
+CREATE TABLE facebook (
+  gclid STRING,
+  UserListDateRuleItemInfo TIMESTAMP,
+  EventItemAttribute STRING,
+  Money INT64,
+  DeviceCategory STRING,
+  MobileDeviceInfo STRING,
+  OperatingSystemVersionInfo STRING,
+  BrowserVersionInfo STRING,
+  GeoPointInfo STRING,
+  eoPointInfoState STRING,
+  GeoPointInfoCity STRING
+);
+
+config {
+  type: "table"
+}
+
+CREATE TABLE ga4 (
+  client_user_id STRING,
+  event_timestamp TIMESTAMP,
+  event_name STRING,
+  event_value_in_usd INT64,
+  device_category STRING,
+  device_brand_name STRING,
+  device_operating_system_version STRING,
+  device_web_info_browser_version STRING,
+  geo_country STRING,
+  geo_region STRING,
+  geo_city STRING
+);
+
