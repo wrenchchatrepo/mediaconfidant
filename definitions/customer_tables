@@ -2,7 +2,7 @@ config {
   type: "table"
 }
 
-CREATE TABLE bing (
+CREATE TABLE cyberdyne_bing (
   gclid STRING,
   UserListDateRuleItemInfo TIMESTAMP,
   EventItemAttribute STRING,
@@ -20,7 +20,7 @@ config {
   type: "table"
 }
 
-CREATE TABLE google (
+CREATE TABLE cyberdyne_google (
   gclid STRING,
   UserListDateRuleItemInfo TIMESTAMP,
   EventItemAttribute STRING,
@@ -38,7 +38,7 @@ config {
   type: "table"
 }
 
-CREATE TABLE tiktok (
+CREATE TABLE cyberdyne_tiktok (
   gclid STRING,
   UserListDateRuleItemInfo TIMESTAMP,
   EventItemAttribute STRING,
@@ -56,7 +56,7 @@ config {
   type: "table"
 }
 
-CREATE TABLE facebook (
+CREATE TABLE cyberdyne_facebook (
   gclid STRING,
   UserListDateRuleItemInfo TIMESTAMP,
   EventItemAttribute STRING,
@@ -74,7 +74,7 @@ config {
   type: "table"
 }
 
-CREATE TABLE ga4 (
+CREATE TABLE cyberdyne_ga4 (
   client_user_id STRING,
   event_timestamp TIMESTAMP,
   event_name STRING,
