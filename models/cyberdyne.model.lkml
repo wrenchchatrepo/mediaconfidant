@@ -8,10 +8,10 @@ include: "/views/cyberdyne/refined/cyberdyne_bing_refined.view.lkml"
 include: "/views/cyberdyne/refined/cyberdyne_google_refined.view.lkml"
 include: "/views/cyberdyne/refined/cyberdyne_facebook_refined.view.lkml"
 include: "/views/cyberdyne/refined/cyberdyne_tiktok_refined.view.lkml"
+include: "/views/cyberdyne/refined/cyberdyne_vendor_comparison.view.lkml"
 include: "/views/shared/shared_data.view.lkml"
 include: "/Dashboards/Vendor_Independent_Activity_Dashboard.dashboard.lookml"
 include: "/Dashboards/Cyberdyne_Comparison_Dashboard.dashboard.lookml"
-
 
 connection: "pipeline"
 
@@ -65,60 +65,46 @@ explore: cyberdyne_tiktok_refined {
   }
 }
 
-# test: event_timestamp_no_nulls_refined {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: event_timestamp_raw
-#     filters: {
-#       field: event_timestamp_raw
-#       value: "-NULL"
-#     }
-#   }
-#   assert: event_timestamp_no_nulls {
-#     expression: ${event_timestamp_raw} IS NOT NULL ;;
-#   }
-# }
+explore: cyberdyne_vendor_comparison {
+  fields: [ALL_FIELDS*]
 
-# test: valid_event_value_range {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: event_value_in_usd
-#   }
-#   assert: event_value_is_valid {
-#     expression: ${event_value_in_usd} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
+  join: cyberdyne_ga4_refined {
+    sql_on: (
+      ${cyberdyne_ga4_refined.event_timestamp_raw} >= TIMESTAMP_SUB(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_ga4_refined.event_timestamp_raw} <= TIMESTAMP_ADD(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
 
-# test: valid_money_range {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: money
-#   }
-#   assert: money_is_valid {
-#     expression: ${money} BETWEEN 0 AND 1000 ;;
-#   }
-# }
+  join: cyberdyne_bing_refined {
+    sql_on: (
+      ${cyberdyne_bing_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_bing_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
 
-# test: valid_conversions_range {
-#   explore_source: cyberdyne_google_refined {
-#     column: conversions
-#   }
-#   assert: conversions_is_valid {
-#     expression: ${conversions} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
+  join: cyberdyne_google_refined {
+    sql_on: (
+      ${cyberdyne_google_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_google_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
 
-# test: valid_clicks_range {
-#   explore_source: cyberdyne_facebook_refined {
-#     column: clicks
-#   }
-#   assert: clicks_is_valid {
-#     expression: ${clicks} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
+  join: cyberdyne_facebook_refined {
+    sql_on: (
+      ${cyberdyne_facebook_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_facebook_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
 
-# test: valid_cost_range {
-#   explore_source: cyberdyne_tiktok_refined {
-#     column: cost
-#   }
-#   assert: cost_is_valid {
-#     expression: ${cost} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
+  join: cyberdyne_tiktok_refined {
+    sql_on: (
+      ${cyberdyne_tiktok_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_tiktok_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${cyberdyne_vendor_comparison.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
+}
