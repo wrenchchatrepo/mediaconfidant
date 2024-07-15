@@ -10,8 +10,9 @@ include: "/views/cyberdyne/refined/cyberdyne_facebook_refined.view.lkml"
 include: "/views/cyberdyne/refined/cyberdyne_tiktok_refined.view.lkml"
 include: "/views/cyberdyne/refined/cyberdyne_vendor_comparison.view.lkml"
 include: "/views/shared/shared_data.view.lkml"
-include: "/Dashboards/Vendor_Independent_Activity_Dashboard.dashboard.lookml"
-include: "/Dashboards/Cyberdyne_Comparison_Dashboard.dashboard.lookml"
+include: "/Dashboards/*.dashboard.lookml"
+# include: "/Dashboards/Vendor_Independent_Activity_Dashboard.dashboard.lookml"
+# include: "/Dashboards/Cyberdyne_Comparison_Dashboard.dashboard.lookml"
 
 connection: "pipeline"
 
