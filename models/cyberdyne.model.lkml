@@ -12,11 +12,11 @@ include: "/views/shared/shared_data.view.lkml"
 
 connection: "pipeline"
 
-explore: cyberdyne_ga4 {
+explore: cyberdyne_ga4_refined {
   join: shared_data {
     sql_on: (
-      ${cyberdyne_ga4.event_timestamp_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
-      AND ${cyberdyne_ga4.event_timestamp_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      ${cyberdyne_ga4_refined.event_timestamp_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${cyberdyne_ga4_refined.event_timestamp_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
     ) ;;
     relationship: many_to_one
   }

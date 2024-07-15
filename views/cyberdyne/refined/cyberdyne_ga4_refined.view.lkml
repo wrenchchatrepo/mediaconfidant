@@ -1,7 +1,7 @@
-include: "/views/cyberdyne/generated/cyberdyne_bing.view.lkml"
+include: "/views/cyberdyne/generated/cyberdyne_ga4.view.lkml"
 
-view: cyberdyne_bing_refined {
-  extends: [cyberdyne_bing]
+view: cyberdyne_ga4_refined {
+  extends: [cyberdyne_ga4]
 
   # Add any necessary refined dimensions or measures if needed
   # For now, only including user_list_date_rule_item_info dimension group
