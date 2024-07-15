@@ -1,0 +1,25 @@
+name: README Helper
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'README.md'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 1  # Fetches only the last commit to speed up the process
+
+      - name: Update README
+        uses: linuxsuren/yaml-readme@v0.0.17
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        with:
+          pattern: 'docs/**/*.yml'  # Adjust the pattern to match your YAML files
+          template: '.github/readme-template.md'  # Specify your README template
