@@ -12,7 +12,6 @@ include: "/views/shared/shared_data.view.lkml"
 include: "/Dashboards/Vendor_Independent_Activity_Dashboard.dashboard.lookml"
 include: "/Dashboards/Cyberdyne_Comparison_Dashboard.dashboard.lookml"
 
-
 connection: "pipeline"
 
 explore: cyberdyne_ga4_refined {
@@ -64,61 +63,3 @@ explore: cyberdyne_tiktok_refined {
     relationship: many_to_one
   }
 }
-
-# test: event_timestamp_no_nulls_refined {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: event_timestamp_raw
-#     filters: {
-#       field: event_timestamp_raw
-#       value: "-NULL"
-#     }
-#   }
-#   assert: event_timestamp_no_nulls {
-#     expression: ${event_timestamp_raw} IS NOT NULL ;;
-#   }
-# }
-
-# test: valid_event_value_range {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: event_value_in_usd
-#   }
-#   assert: event_value_is_valid {
-#     expression: ${event_value_in_usd} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
-
-# test: valid_money_range {
-#   explore_source: cyberdyne_ga4_refined {
-#     column: money
-#   }
-#   assert: money_is_valid {
-#     expression: ${money} BETWEEN 0 AND 1000 ;;
-#   }
-# }
-
-# test: valid_conversions_range {
-#   explore_source: cyberdyne_google_refined {
-#     column: conversions
-#   }
-#   assert: conversions_is_valid {
-#     expression: ${conversions} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
-
-# test: valid_clicks_range {
-#   explore_source: cyberdyne_facebook_refined {
-#     column: clicks
-#   }
-#   assert: clicks_is_valid {
-#     expression: ${clicks} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
-
-# test: valid_cost_range {
-#   explore_source: cyberdyne_tiktok_refined {
-#     column: cost
-#   }
-#   assert: cost_is_valid {
-#     expression: ${cost} BETWEEN 0 AND 1000000 ;;
-#   }
-# }
