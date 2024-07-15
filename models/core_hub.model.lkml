@@ -31,63 +31,6 @@ explore: cyberdyne_ga4 {}
 
 explore: cyberdyne_bing {}
 
-explore: permissions_analysis {
-    join: permissions_analysis__analysis__non_critical_errors {
-      view_label: "Permissions Analysis: Analysis Noncriticalerrors"
-      sql: LEFT JOIN UNNEST(${permissions_analysis.analysis__non_critical_errors}) as permissions_analysis__analysis__non_critical_errors ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis__analysis__analysis_query__access_selector__roles {
-      view_label: "Permissions Analysis: Analysis Analysisquery Accessselector Roles"
-      sql: LEFT JOIN UNNEST(${permissions_analysis.analysis__analysis_query__access_selector__roles}) as permissions_analysis__analysis__analysis_query__access_selector__roles ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis__analysis__analysis_query__access_selector__permissions {
-      view_label: "Permissions Analysis: Analysis Analysisquery Accessselector Permissions"
-      sql: LEFT JOIN UNNEST(${permissions_analysis.analysis__analysis_query__access_selector__permissions}) as permissions_analysis__analysis__analysis_query__access_selector__permissions ;;
-      relationship: one_to_many
-    }
-}
-
 explore: cyberdyne_tiktok {}
 
 explore: cyberdyne_facebook {}
-
-explore: permissions_analysis_result {
-    join: permissions_analysis_result__analysis_result__iam_binding__members {
-      view_label: "Permissions Analysis Result: Analysisresult Iambinding Members"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__iam_binding__members}) as permissions_analysis_result__analysis_result__iam_binding__members ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__identity_list__identities {
-      view_label: "Permissions Analysis Result: Analysisresult Identitylist Identities"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__identity_list__identities}) as permissions_analysis_result__analysis_result__identity_list__identities ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__access_control_lists__accesses {
-      view_label: "Permissions Analysis Result: Analysisresult Accesscontrollists Accesses"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__access_control_lists__accesses}) as permissions_analysis_result__analysis_result__access_control_lists__accesses ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__identity_list__group_edges {
-      view_label: "Permissions Analysis Result: Analysisresult Identitylist Groupedges"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__identity_list__group_edges}) as permissions_analysis_result__analysis_result__identity_list__group_edges ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__access_control_lists__resource_edges {
-      view_label: "Permissions Analysis Result: Analysisresult Accesscontrollists Resourceedges"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__access_control_lists__resource_edges}) as permissions_analysis_result__analysis_result__access_control_lists__resource_edges ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__access_control_lists__resources {
-      view_label: "Permissions Analysis Result: Analysisresult Accesscontrollists Resources"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__access_control_lists__resources}) as permissions_analysis_result__analysis_result__access_control_lists__resources ;;
-      relationship: one_to_many
-    }
-    join: permissions_analysis_result__analysis_result__access_control_lists {
-      view_label: "Permissions Analysis Result: Analysisresult Accesscontrollists"
-      sql: LEFT JOIN UNNEST(${permissions_analysis_result.analysis_result__access_control_lists}) as permissions_analysis_result__analysis_result__access_control_lists ;;
-      relationship: one_to_many
-    }
-}
-
