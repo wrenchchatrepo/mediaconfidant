@@ -1,3 +1,9 @@
+include: "/views/cyberdyne/refined/cyberdyne_ga4_refined.view.lkml"
+include: "/views/cyberdyne/refined/cyberdyne_bing_refined.view.lkml"
+include: "/views/cyberdyne/refined/cyberdyne_google_refined.view.lkml"
+include: "/views/cyberdyne/refined/cyberdyne_facebook_refined.view.lkml"
+include: "/views/cyberdyne/refined/cyberdyne_tiktok_refined.view.lkml"
+
 view: shared_data {
   dimension: client_user_id {
     type: string
