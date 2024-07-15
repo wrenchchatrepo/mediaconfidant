@@ -1,11 +1,13 @@
-include: "/views/cyberdyne/cyberdyne_ga4.view.lkml"
+include: "/views/cyberdyne/generated/cyberdyne_bing.view.lkml"
 
-view: cyberdyne_ga4_refined {
-  extends: [cyberdyne_ga4]
+view: cyberdyne_bing_refined {
+  extends: [cyberdyne_bing]
 
-  dimension_group: event_timestamp {
+  # Add any necessary refined dimensions or measures if needed
+  # For now, only including user_list_date_rule_item_info dimension group
+  dimension_group: user_list_date_rule_item_info {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.event_timestamp ;;
+    sql: ${TABLE}.user_list_date_rule_item_info ;;
   }
 }

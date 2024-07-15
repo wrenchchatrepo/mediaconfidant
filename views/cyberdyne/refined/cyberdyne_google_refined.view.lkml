@@ -1,4 +1,4 @@
-include: "/views/cyberdyne/cyberdyne_google.view.lkml"
+include: "/views/cyberdyne/generated/cyberdyne_google.view.lkml"
 
 view: cyberdyne_google_refined {
   extends: [cyberdyne_google]
@@ -8,4 +8,6 @@ view: cyberdyne_google_refined {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.user_list_date_rule_item_info ;;
   }
+
+  # Add any necessary refined dimensions or measures if needed
 }
