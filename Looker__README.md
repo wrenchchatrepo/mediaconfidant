@@ -1,5 +1,72 @@
 <h1><span style="color:#2d7eea">README - Your LookML Project</span></h1>
 
+## LookML Project Structure and Conceptual Overview
+
+This project follows a hub-and-spoke architecture to manage LookML models efficiently. The core hub model contains shared views and configurations, while each customer has its own model and views extending the shared views.
+
+### Project Structure
+
+```
+your-project:
+  models:
+    - core_hub.model.lkml
+    - cyberdyne.model.lkml
+    - arkham.model.lkml
+  views:
+    shared:
+      - shared_data.view.lkml
+    cyberdyne:
+      - cyberdyne_ga4.view.lkml
+      - cyberdyne_bing.view.lkml
+      - cyberdyne_google.view.lkml
+      - cyberdyne_facebook.view.lkml
+      - cyberdyne_tiktok.view.lkml
+    arkham:
+      - arkham_ga4.view.lkml
+      - arkham_bing.view.lkml
+      - arkham_google.view.lkml
+      - arkham_facebook.view.lkml
+      - arkham_tiktok.view.lkml
+  dashboards:
+    - cyberdyne_dashboard.dashboard.lkml
+    - arkham_dashboard.dashboard.lkml
+  - .gitignore
+  - README.md
+  - LICENSE
+```
+
+## Core Hub Model
+
+The core hub model (core_hub.model.lkml) includes shared views and configurations. It serves as the base for all customer-specific models.
+
+**Shared View**
+
+The shared view (shared_data.view.lkml) contains common dimensions and measures that are used across multiple customer-specific datasets.
+
+**Customer-Specific Models**
+
+Each customer has its own model file that includes the core hub model and customer-specific views. The models define explores that join the shared data with customer-specific tables using fuzzy logic on timestamps.
+
+**Fuzzy Join Logic**
+
+To join customer-specific tables using fuzzy logic on timestamps, we use the TIMESTAMP_DIFF function to join the tables within a certain time range.
+
+  1.  Convert Timestamps to a Common Format:
+  • Ensure all timestamps are in the same time zone (e.g., UTC).
+  2.  Define the Time Range for Matching:
+  • Use a time window (e.g., 1 minute) for joining the datasets. This can be adjusted based on the specific requirements.
+  3.  Apply the Fuzzy Join in the Explore:
+  • Use the TIMESTAMP_DIFF function to create a join condition that checks if the difference between timestamps falls within the specified range.
+
+**Example of Fuzzy Join Logic**
+
+```
+join: cyberdyne_bing {
+  sql_on: TIMESTAMP_DIFF(${shared_data.event_timestamp}, ${cyberdyne_bing.UserListDateRuleItemInfo}, SECOND) BETWEEN -60 AND 60 ;;
+  relationship: many_to_one
+}
+```
+
 <h2><span style="color:#2d7eea">LookML Overview</span></h2>
 
 LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
