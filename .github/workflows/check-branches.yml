@@ -25,6 +25,13 @@ jobs:
         with:
           node-version: '14'
 
+      - name: Debug Environment
+        run: |
+          echo "Python Location: $pythonLocation"
+          echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
+          env
+
       - name: List issues in README
         uses: actions/github-script@v4
         with:
