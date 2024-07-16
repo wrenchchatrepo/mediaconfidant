@@ -25,13 +25,6 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Debug Environment
-        run: |
-          echo "Python Location: $pythonLocation"
-          echo "LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-          echo "GITHUB_TOKEN: $GITHUB_TOKEN"
-          env
-
       - name: List issues in README
         uses: actions/github-script@v4
         with:
@@ -42,14 +35,13 @@ jobs:
               state: 'all'
             });
 
-            if (!issues) {
-              core.setFailed('No issues found or unable to fetch issues.');
-              return;
+            if (!issues || issues.length === 0) {
+              console.log('No issues found.');
+              const issueTable = '| Number | Title | State |\n|--------|-------|-------|\n| No issues found | | |';
+            } else {
+              console.log(`Fetched ${issues.length} issues.`);
+              const issueTable = issues.map(issue => `| ${issue.number} | ${issue.title} | ${issue.state} |`).join('\n');
             }
-
-            console.log(`Fetched ${issues.length} issues.`);
-
-            const issueTable = issues.map(issue => `| ${issue.number} | ${issue.title} | ${issue.state} |`).join('\n');
 
             const readmePath = './README.md';
             const fs = require('fs');
