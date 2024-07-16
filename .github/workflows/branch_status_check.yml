@@ -77,3 +77,52 @@ jobs:
         git config --local user.name "GitHub Action"
         git add .
         git diff --quiet && git diff --staged --quiet || (git commit -m "Update branch status report" && git push)
+
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run test script
+      run: |
+        import os
+        import subprocess
+
+        def test_git_branch():
+            result = subprocess.run(['git', 'branch'], capture_output=True, text=True)
+            if result.returncode == 0:
+                print("Git branch command executed successfully")
+                return True
+            else:
+                print("Error executing git branch command")
+                return False
+
+        def test_github_token():
+            token = os.environ.get('GITHUB_TOKEN')
+            if token:
+                print("GITHUB_TOKEN is set")
+                return True
+            else:
+                print("GITHUB_TOKEN is not set")
+                return False
+
+        if test_git_branch() and test_github_token():
+            print("Workflow test passed")
+        else:
+            print("Workflow test failed")
+            exit(1)
+
+    - name: Check test results
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "Workflow test passed"
+        else
+          echo "Workflow test failed"
+          exit 1
+        fi
