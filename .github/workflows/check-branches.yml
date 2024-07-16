@@ -16,16 +16,51 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          python-version: '3.x'
+          node-version: '14'
 
-      - name: Install dependencies
-        run: pip install PyGithub
+      - name: List issues in README
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const { issues } = await github.paginate(github.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'all'
+            });
 
-      - name: Run branch status check
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-        run: python check_branches.py
+            const issueTable = issues.map(issue => `| ${issue.number} | ${issue.title} | ${issue.state} |`).join('\n');
+
+            const readmePath = './README.md';
+            const fs = require('fs');
+            let readmeContent = fs.readFileSync(readmePath, 'utf8');
+
+            const startMarker = '<!-- issueTable -->';
+            const endMarker = '<!-- /issueTable -->';
+            const startIndex = readmeContent.indexOf(startMarker) + startMarker.length;
+            const endIndex = readmeContent.indexOf(endMarker);
+
+            if (startIndex === -1 || endIndex === -1) {
+              core.setFailed('Markers not found in README.md');
+              return;
+            }
+
+            const newContent = `${startMarker}\n| Number | Title | State |\n|--------|-------|-------|\n${issueTable}\n${endMarker}`;
+            readmeContent = readmeContent.slice(0, startIndex) + newContent + readmeContent.slice(endIndex);
+
+            fs.writeFileSync(readmePath, readmeContent);
+
+            await github.repos.createOrUpdateFileContents({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: 'README.md',
+              message: 'Update issue list in README',
+              content: Buffer.from(readmeContent).toString('base64'),
+              sha: (await github.repos.getContent({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                path: 'README.md'
+              })).data.sha
+            });
