@@ -3,9 +3,7 @@
 [![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
 
 ## Project Overview
-This project integrates advertising data from various platforms using BigQuery, Dataform, and Looker to provide comprehensive insights into ad performance. This repository contains the code and documentation for an analytics pipeline built for MediaConfidant using Google Cloud Workflows and Pulumi and other Google Cloud services. This pipeline automates data ingestion, transformation, analysis, and reporting to provide actionable insights for MediaConfidant's business. 
-
-![MediaConfidant: Analytics Pipeline as Code on GCP](https://github.com/wrenchchatrepo/mediaconfidant/assets/158282973/2a86eb68-5be5-4714-84c4-571f2e256f82)
+This project integrates advertising data from various platforms using BigQuery, Dataform, and Looker to provide comprehensive insights into ad performance. This repository contains the code and documentation for an analytics pipeline built for MediaConfidant using Google Cloud Workflows and Pulumi and other Google Cloud services. This pipeline automates data ingestion, transformation, analysis, and reporting to provide actionable insights for MediaConfidant's business.
 
 ### Proposal for a Data Product Using Dataform, Looker, and BigQuery Machine Learning
 
@@ -29,11 +27,11 @@ This project utilizes a modular workflow approach to manage the entire data pipe
 represents a distinct stage of the process, ensuring a clear and organized structure.
 
 ### Data Sources
-	Google Ads
-	Facebook Ads
-	Bing Ads
-	TikTok Ads
-	Google Analytics
+  Google Ads
+  Facebook Ads
+  Bing Ads
+  TikTok Ads
+  Google Analytics
 
 ## Analytics Engineering
 1. Data Ingestion:
@@ -84,50 +82,48 @@ To get started with the project, follow these steps:
 
 ### Issues
 <!-- issueTable -->
-
-| Title                                                                         |   Status   | Assignee | Body          |
-| :---------------------------------------------------------------------------- | :--------: | :------: | :------------ |
-| <a href="https://github.com/wrenchchatrepo/mediaconfidant/pull/1">Vendors</a> | :no_entry: |          | dataform init |
-
+| Title                                                                                                  |         Status          | Assignee | Body           |
+| :----------------------------------------------------------------------------------------------------- | :---------------------: | :------: | :------------- |
+| <a href="https://github.com/wrenchchatrepo/orale_customer/issues/1">Just a test of a github action</a> | :eight_spoked_asterisk: |          | Please ignore. |
 <!-- issueTable -->
 
 ### Directory Structure
 ```
 /dataform
-	/definitions
-	standardized_ads_data.sqlx
-	combined_metrics.sqlx
-	/dataform.json
+  /definitions
+  standardized_ads_data.sqlx
+  combined_metrics.sqlx
+  /dataform.json
 /bigquery
-	google_ads_schema.sql
-	facebook_ads_schema.sql
-	bing_ads_schema.sql
-	tiktok_ads_schema.sql
-	google_analytics_schema.sql
+  google_ads_schema.sql
+  facebook_ads_schema.sql
+  bing_ads_schema.sql
+  tiktok_ads_schema.sql
+  google_analytics_schema.sql
 /looker
-	/views
-	standardized_ads_data.view.lkml
-	combined_metrics.view.lkml
-	logistic_regression_predictions.view.lkml
-	arima_plus_forecasts.view.lkml
-	/models
-	data_product.model.lkml
-	/manifest
-	manifest.lkml
-	/dashboards
-	combined_metrics_dashboard.dashboard.lkml
-	logistic_regression_predictions_dashboard.dashboard.lkml
-	arima_plus_forecasts_dashboard.dashboard.lkml
+  /views
+  standardized_ads_data.view.lkml
+  combined_metrics.view.lkml
+  logistic_regression_predictions.view.lkml
+  arima_plus_forecasts.view.lkml
+  /models
+  data_product.model.lkml
+  /manifest
+  manifest.lkml
+  /dashboards
+  combined_metrics_dashboard.dashboard.lkml
+  logistic_regression_predictions_dashboard.dashboard.lkml
+  arima_plus_forecasts_dashboard.dashboard.lkml
 /scripts
-	create_standardized_ads_data_view.py
-	create_combined_metrics_view.py
-	create_logistic_regression_predictions_view.py
-	create_arima_plus_forecasts_view.py
-	create_model_file.py
-	create_manifest_file.py
-	create_combined_metrics_dashboard.py
-	create_logistic_regression_predictions_dashboard.py
-	create_arima_plus_forecasts_dashboard.py
+  create_standardized_ads_data_view.py
+  create_combined_metrics_view.py
+  create_logistic_regression_predictions_view.py
+  create_arima_plus_forecasts_view.py
+  create_model_file.py
+  create_manifest_file.py
+  create_combined_metrics_dashboard.py
+  create_logistic_regression_predictions_dashboard.py
+  create_arima_plus_forecasts_dashboard.py
 ```
 
 ## The provided document is a comprehensive plan for integrating and analyzing advertising data from various platforms using BigQuery, Dataform, and Looker. It covers the following key areas:
@@ -324,7 +320,7 @@ ORDER BY
 
 ### Considerations
 + Cost: BigQuery charges for data storage and queries, so it’s important to monitor usage and costs.
-+ Data Freshness: Depending on your configuration, there may be a delay between data 
++ Data Freshness: Depending on your configuration, there may be a delay between data
 
 ### Integrating the Data
 To integrate data from Google Ads, Facebook Ads, TikTok, and Bing Ads with Google Analytics data in BigQuery, you’ll need to use a combination of data transfers, API integrations, and data transformations. Here’s a step-by-step guide on how to achieve this integration and perform necessary transformations using Dataform:
@@ -373,7 +369,7 @@ response = requests.post(token_url, headers=headers, data=data)
 access_token = response.json().get('access_token')
 ```
 
-2.	Fetching Ad Data:
+2.  Fetching Ad Data:
 + Use the Reporting API to get performance data.
 + Example for fetching a report:
 ```
@@ -447,7 +443,7 @@ data = {
 response = requests.post(token_url, headers=headers, json=data)
 access_token = response.json().get('data').get('access_token')
 ```
-2.	Fetching Ad Data:
+2.  Fetching Ad Data:
 + Use the Reporting API to get performance data.
 + Example for fetching a report:
 ```
@@ -581,7 +577,7 @@ select
   parse_timestamp("%Y-%m-%dT%H:%M:%S%z", timestamp) as timestamp
 from ${ref("unified_ads_data")}
 ```
-3.	Join with Google Analytics Data:
+3.  Join with Google Analytics Data:
 ```
 config {
   type: "table",
@@ -1017,13 +1013,13 @@ SELECT
   (SUM(ga.total_session_duration) / SUM(ga.sessions)) AS avg_session_duration_per_ad_channel,
   (SUM(ads.cost) / SUM(ads.conversions)) AS ad_cpa,
   ads.date
-FROM 
+FROM
   `project_id.dataset_id.standardized_ads_data` AS ads
-JOIN 
+JOIN
   `project_id.dataset_id.google_analytics_data` AS ga
-ON 
+ON
   ads.date = ga.date AND ads.campaign_id = ga.campaign_id
-GROUP BY 
+GROUP BY
   ads.platform, ads.campaign_id, ads.date;
 ```
 To estimate the implications for size with quarter-hourly data aggregation, we need to adjust our calculations accordingly. Let’s go through the steps with this higher granularity.
@@ -1135,6 +1131,3 @@ We’ll need to create view files for each table, a model file that includes the
 + View Files: Define the schema and metrics for standardized_ads_data and combined_metrics.
 + Model File: Defines the explore for the data product, including the joins and relationships.
 + Manifest File: Defines the dashboard layout and elements, including filters and single value displays for key metrics.
-
-
-
