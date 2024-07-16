@@ -35,6 +35,13 @@ jobs:
               state: 'all'
             });
 
+            if (!issues) {
+              core.setFailed('No issues found or unable to fetch issues.');
+              return;
+            }
+
+            console.log(`Fetched ${issues.length} issues.`);
+
             const issueTable = issues.map(issue => `| ${issue.number} | ${issue.title} | ${issue.state} |`).join('\n');
 
             const readmePath = './README.md';
