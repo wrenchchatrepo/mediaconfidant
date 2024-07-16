@@ -12,6 +12,10 @@ jobs:
   check-branches:
     runs-on: ubuntu-latest
 
+    permissions:
+      issues: read
+      contents: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -52,15 +56,17 @@ jobs:
 
             fs.writeFileSync(readmePath, readmeContent);
 
+            const { data: { sha } } = await github.repos.getContent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              path: 'README.md'
+            });
+
             await github.repos.createOrUpdateFileContents({
               owner: context.repo.owner,
               repo: context.repo.repo,
               path: 'README.md',
               message: 'Update issue list in README',
               content: Buffer.from(readmeContent).toString('base64'),
-              sha: (await github.repos.getContent({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                path: 'README.md'
-              })).data.sha
+              sha: sha
             });
