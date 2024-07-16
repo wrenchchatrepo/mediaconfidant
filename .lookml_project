@@ -1,0 +1,10 @@
+exclude: [
+  "LICENSE",
+  ".github/*",
+  "agent_support/*",
+  "looker/*",
+  "package-lock.json",
+  "package.json",
+  "views/permissions_analysis.view.lkml",
+  "views/permissions_analysis_result.view.lkml"
+]
