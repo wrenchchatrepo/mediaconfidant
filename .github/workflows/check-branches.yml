@@ -1,0 +1,31 @@
+name: Check Branches
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  push:
+    branches:
+      - main
+      - backup
+
+jobs:
+  check-branches:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Run branch status check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python check_branches.py
