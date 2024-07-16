@@ -40,3 +40,28 @@ jobs:
         run: python check_branches.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for issueTable pattern in README
+        id: check_pattern
+        run: |
+          if ! grep -q '<!-- issueTable -->' README.md; then
+            echo "Pattern not found in README.md"
+            exit 1
+          fi
+
+      - name: Update README with Issues
+        if: steps.check_pattern.outcome == 'success'
+        uses: seed-of-apricot/issue-list-readme@v1.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pattern: <!-- issueTable -->
+          state: all
+
+      - name: Branch Status Check
+        run: echo "Branch Status Check"
+
+      - name: Replacer Action
+        run: echo "Replacer Action"
+
+      - name: Test Git Config
+        run: echo "Test Git Config"
