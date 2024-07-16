@@ -25,54 +25,15 @@ jobs:
         with:
           node-version: '14'
 
-      - name: List issues in README
-        uses: actions/github-script@v4
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          script: |
-            const { issues } = await github.paginate(github.issues.listForRepo, {
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'all'
-            });
+          python-version: '3.x'
 
-            if (!issues || issues.length === 0) {
-              console.log('No issues found.');
-              const issueTable = '| Number | Title | State |\n|--------|-------|-------|\n| No issues found | | |';
-            } else {
-              console.log(`Fetched ${issues.length} issues.`);
-              const issueTable = issues.map(issue => `| ${issue.number} | ${issue.title} | ${issue.state} |`).join('\n');
-            }
+      - name: Install dependencies
+        run: pip install PyGithub
 
-            const readmePath = './README.md';
-            const fs = require('fs');
-            let readmeContent = fs.readFileSync(readmePath, 'utf8');
-
-            const startMarker = '<!-- issueTable -->';
-            const endMarker = '<!-- /issueTable -->';
-            const startIndex = readmeContent.indexOf(startMarker) + startMarker.length;
-            const endIndex = readmeContent.indexOf(endMarker);
-
-            if (startIndex === -1 || endIndex === -1) {
-              core.setFailed('Markers not found in README.md');
-              return;
-            }
-
-            const newContent = `${startMarker}\n| Number | Title | State |\n|--------|-------|-------|\n${issueTable}\n${endMarker}`;
-            readmeContent = readmeContent.slice(0, startIndex) + newContent + readmeContent.slice(endIndex);
-
-            fs.writeFileSync(readmePath, readmeContent);
-
-            const { data: { sha } } = await github.repos.getContent({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              path: 'README.md'
-            });
-
-            await github.repos.createOrUpdateFileContents({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              path: 'README.md',
-              message: 'Update issue list in README',
-              content: Buffer.from(readmeContent).toString('base64'),
-              sha: sha
-            });
+      - name: Run branch check script
+        run: python check_branches.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
