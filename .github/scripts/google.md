@@ -5,10 +5,10 @@ google:
    user: dion@wrench.chat
    service_account: svcacct@mediaconfidant.iam.gserviceaccount.com
    oauth_credentials:
-     client_id: "707664316556-4rsr1q2v2id77uaemriohv92cbqv34a6.apps.googleusercontent.com"
-     client_secret: "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
+     client_id: ""
+     client_secret: ""
    gemini:
-     mediaconfidant: "AIzaSyDtJP3SOnkQTJvLuPwoIQsX9tQ8tlLSogc
+     mediaconfidant: ""
    bigquery:
       datasets:
          mediaconfidant.bing_ads_dataset
@@ -29,7 +29,7 @@ google:
 github_repo: https://github.com/wrenchchatrepo/mediaconfidant.git
    github_org: https://github.com/wrenchchatrepo
    github_org_token: GH_TOKEN
-   github_pat_key: "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"
+   github_pat_key: ""
 
 
 DONE: 1. **Install Google Cloud SDK**: - Ensure that you have the Google Cloud SDK installed. If not, install it by following the instructions at: https://cloud.google.com/sdk/docs/install
