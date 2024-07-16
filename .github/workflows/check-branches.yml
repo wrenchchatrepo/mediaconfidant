@@ -58,10 +58,22 @@ jobs:
           state: all
 
       - name: Branch Status Check
-        run: echo "Branch Status Check"
+        run: |
+          echo "Branch Status Check"
+          # Add any additional commands here
 
       - name: Replacer Action
-        run: echo "Replacer Action"
+        run: |
+          echo "Replacer Action"
+          # Add any additional commands here
 
       - name: Test Git Config
-        run: echo "Test Git Config"
+        run: |
+          echo "Test Git Config"
+          # Add any additional commands here
+
+      - name: Debug Environment
+        run: |
+          echo "Debugging Environment"
+          env
+          ls -la
