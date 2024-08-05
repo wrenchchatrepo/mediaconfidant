@@ -1,8 +1,8 @@
-# The name of this view in Looker is "Cyberdyne Bing"
-view: cyberdyne_bing {
+# The name of this view in Looker is "Demo Facebook"
+view: demo_facebook {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `doit-new-project.customers.cyberdyne_bing` ;;
+  sql_table_name: `customers.demo_facebook` ;;
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
