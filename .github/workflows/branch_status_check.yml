@@ -1,0 +1,128 @@
+name: Branch Status Check
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  check-branches:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0  # Fetch all history for all branches and tags
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        pip install PyGithub
+
+    - name: Check branch status and create PRs
+      env:
+        GITHUB_TOKEN: ${{ secrets.github_token }}
+      run: |
+        import os
+        import subprocess
+        from github import Github
+
+        def get_branch_status():
+            result = subprocess.run(['git', 'branch', '-vv'], capture_output=True, text=True)
+            branches = result.stdout.strip().split('\n')
+            status = {}
+            for branch in branches:
+                parts = branch.split()
+                name = parts[1] if parts[0] == '*' else parts[0]
+                ahead_behind = ' '.join(parts[2:])
+                status[name] = ahead_behind
+            return status
+
+        def create_pull_request(repo, base, head):
+            try:
+                pr = repo.create_pull(
+                    title=f"Update {head} from {base}",
+                    body=f"Automatically generated PR to update {head} from {base}",
+                    base=head,
+                    head=base
+                )
+                print(f"Created PR: {pr.html_url}")
+            except Exception as e:
+                print(f"Error creating PR for {head}: {str(e)}")
+
+        # Get branch status
+        branch_status = get_branch_status()
+
+        # Print branch status
+        print("Branch Status:")
+        for branch, status in branch_status.items():
+            print(f"{branch}: {status}")
+
+        # Create PRs for branches that are behind
+        g = Github(os.environ['GITHUB_TOKEN'])
+        repo = g.get_repo(os.environ['GITHUB_REPOSITORY'])
+        main_branch = repo.default_branch
+
+        for branch, status in branch_status.items():
+            if branch != main_branch and 'behind' in status:
+                create_pull_request(repo, main_branch, branch)
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Update branch status report" && git push)
+
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run test script
+      run: |
+        import os
+        import subprocess
+
+        def test_git_branch():
+            result = subprocess.run(['git', 'branch'], capture_output=True, text=True)
+            if result.returncode == 0:
+                print("Git branch command executed successfully")
+                return True
+            else:
+                print("Error executing git branch command")
+                return False
+
+        def test_github_token():
+            token = os.environ.get('GITHUB_TOKEN')
+            if token:
+                print("GITHUB_TOKEN is set")
+                return True
+            else:
+                print("GITHUB_TOKEN is not set")
+                return False
+
+        if test_git_branch() and test_github_token():
+            print("Workflow test passed")
+        else:
+            print("Workflow test failed")
+            exit(1)
+
+    - name: Check test results
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "Workflow test passed"
+        else
+          echo "Workflow test failed"
+          exit 1
+        fi
