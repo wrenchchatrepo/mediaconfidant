@@ -35,7 +35,7 @@ your-project:
   - LICENSE
 ```
 
-## Core Hub Model
+## Demo Model
 
 The core hub model (core_hub.model.lkml) includes shared views and configurations. It serves as the base for all customer-specific models.
 
