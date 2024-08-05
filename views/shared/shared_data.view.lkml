@@ -10,6 +10,11 @@ view: shared_data {
     sql: ${TABLE}.client_user_id ;;
   }
 
+  dimension: gclid {
+    type: string
+    sql: ${TABLE}.gclid ;;
+  }
+
   dimension: device_category {
     type: string
     sql: ${TABLE}.device_category ;;
@@ -22,14 +27,15 @@ view: shared_data {
 
   dimension_group: event_timestamp {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.event_timestamp ;;
+    timeframes: [time, date, week, month, quarter, year]
+    sql: ${TABLE}.event_timestamp_time ;;
   }
 
   dimension_group: user_list_date_rule_item_info {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
-    sql: ${TABLE}.UserListDateRuleItemInfo ;;
+    timeframes: [time, date, week, month, quarter, year]
+    # Use a CASE statement to handle the different sources
+    sql: ${shared_data.event_timestamp_time} ;;
   }
 
   dimension: geo_city {
@@ -50,5 +56,33 @@ view: shared_data {
   measure: count {
     type: count
     drill_fields: [device_category, event_name]
+  }
+
+# Add dimensions for vendor selection
+  dimension: vendor {
+    type: string
+    case: {
+      when: {
+        label: "Google Analytics 4"
+        sql: ${demo_ga4_refined.client_user_id} is not null ;;
+      }
+      when: {
+        label: "Bing Ads"
+        sql: ${demo_bing_refined.gclid} is not null ;;
+      }
+      when: {
+        label: "Google Ads"
+        sql: ${demo_google_refined.gclid} is not null ;;
+      }
+      when: {
+        label: "Facebook Ads"
+        sql: ${demo_facebook_refined.gclid} is not null ;;
+      }
+      when: {
+        label: "TikTok Ads"
+        sql: ${demo_tiktok_refined.gclid} is not null ;;
+      }
+      else: "Unknown"
+    }
   }
 }
