@@ -1,0 +1,79 @@
+name: Check Branches
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight
+  push:
+    branches:
+      - main
+      - backup
+
+jobs:
+  check-branches:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: read
+      contents: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install PyGithub
+
+      - name: Ensure script is executable
+        run: chmod +x check_branches.py
+
+      - name: Run branch check script
+        run: python check_branches.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check for issueTable pattern in README
+        id: check_pattern
+        run: |
+          if ! grep -q '<!-- issueTable -->' README.md; then
+            echo "Pattern not found in README.md"
+            exit 1
+          fi
+
+      - name: Update README with Issues
+        if: steps.check_pattern.outcome == 'success'
+        uses: seed-of-apricot/issue-list-readme@v1.1.0
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          pattern: <!-- issueTable -->
+          state: all
+
+      - name: Branch Status Check
+        run: |
+          echo "Branch Status Check"
+          # Add any additional commands here
+
+      - name: Replacer Action
+        run: |
+          echo "Replacer Action"
+          # Add any additional commands here
+
+      - name: Test Git Config
+        run: |
+          echo "Test Git Config"
+          # Add any additional commands here
+
+      - name: Debug Environment
+        run: |
+          echo "Debugging Environment"
+          env
+          ls -la

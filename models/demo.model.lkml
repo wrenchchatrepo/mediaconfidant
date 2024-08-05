@@ -1,37 +1,63 @@
-# Define the database connection to be used for this model.
+include: "/views/demo/generated/demo_ga4.view.lkml"
+include: "/views/demo/generated/demo_bing.view.lkml"
+include: "/views/demo/generated/demo_google.view.lkml"
+include: "/views/demo/generated/demo_facebook.view.lkml"
+include: "/views/demo/generated/demo_tiktok.view.lkml"
+include: "/views/demo/refined/demo_ga4_refined.view.lkml"
+include: "/views/demo/refined/demo_bing_refined.view.lkml"
+include: "/views/demo/refined/demo_google_refined.view.lkml"
+include: "/views/demo/refined/demo_facebook_refined.view.lkml"
+include: "/views/demo/refined/demo_tiktok_refined.view.lkml"
+include: "/views/shared/shared_data.view.lkml"
+# include: "/Dashboards/*.dashboard.lookml"
 connection: "pipeline"
 
-# include all the views
-include: "/views/**/*.view.lkml"
-
-# Datagroups define a caching policy for an Explore. To learn more,
-# use the Quick Help panel on the right to see documentation.
-
-datagroup: demo_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
+explore: demo_ga4_refined {
+  join: shared_data {
+    sql_on: (
+      ${demo_ga4_refined.event_timestamp_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${demo_ga4_refined.event_timestamp_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
 }
 
-persist_with: demo_default_datagroup
+explore: demo_bing_refined {
+  join: shared_data {
+    sql_on: (
+      ${demo_bing_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${demo_bing_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
+}
 
-# Explores allow you to join together different views (database tables) based on the
-# relationships between fields. By joining a view into an Explore, you make those
-# fields available to users for data analysis.
-# Explores should be purpose-built for specific use cases.
+explore: demo_google_refined {
+  join: shared_data {
+    sql_on: (
+      ${demo_google_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${demo_google_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
+}
 
-# To see the Explore you’re building, navigate to the Explore menu and select an Explore under "Demo"
+explore: demo_facebook_refined {
+  join: shared_data {
+    sql_on: (
+      ${demo_facebook_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${demo_facebook_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
+}
 
-# To create more sophisticated Explores that involve multiple views, you can use the join parameter.
-# Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
-# Each joined view also needs to define a primary key.
-
-explore: demo_bing {}
-
-explore: demo_facebook {}
-
-explore: demo_google {}
-
-explore: demo_tiktok {}
-
-explore: demo_ga4 {}
-
+explore: demo_tiktok_refined {
+  join: shared_data {
+    sql_on: (
+      ${demo_tiktok_refined.user_list_date_rule_item_info_raw} >= TIMESTAMP_SUB(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+      AND ${demo_tiktok_refined.user_list_date_rule_item_info_raw} <= TIMESTAMP_ADD(${shared_data.event_timestamp_raw}, INTERVAL 60 SECOND)
+    ) ;;
+    relationship: many_to_one
+  }
+}
