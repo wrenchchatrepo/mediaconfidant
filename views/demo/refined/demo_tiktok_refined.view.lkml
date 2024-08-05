@@ -5,7 +5,7 @@ view: demo_tiktok_refined {
 
   dimension_group: user_list_date_rule_item_info {
     type: time
-    timeframes: [raw, time, date, week, month, quarter, year]
+    timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.user_list_date_rule_item_info ;;
   }
 

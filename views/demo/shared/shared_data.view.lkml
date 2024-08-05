@@ -35,7 +35,7 @@ view: shared_data {
     type: time
     timeframes: [time, date, week, month, quarter, year]
     # Use a CASE statement to handle the different sources
-    sql: ${shared_data.event_timestamp_time} ;;
+    sql: ${shared_data.event_timestamp} ;;
   }
 
   dimension: geo_city {

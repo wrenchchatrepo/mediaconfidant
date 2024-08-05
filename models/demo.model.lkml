@@ -8,7 +8,7 @@ include: "/views/demo/refined/demo_bing_refined.view.lkml"
 include: "/views/demo/refined/demo_google_refined.view.lkml"
 include: "/views/demo/refined/demo_facebook_refined.view.lkml"
 include: "/views/demo/refined/demo_tiktok_refined.view.lkml"
-include: "/views/shared/shared_data.view.lkml"
+include: "/views/demo/shared/shared_data.view.lkml"
 
 connection: "pipeline"
 
