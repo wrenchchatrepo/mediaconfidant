@@ -1,8 +1,8 @@
-# The name of this view in Looker is "Cyberdyne Tiktok"
-view: cyberdyne_tiktok {
+# The name of this view in Looker is "Demo Tiktok"
+view: demo_tiktok {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `doit-new-project.customers.cyberdyne_tiktok` ;;
+  sql_table_name: `customers.demo_tiktok` ;;
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -71,9 +71,12 @@ view: cyberdyne_tiktok {
     type: string
     sql: ${TABLE}.OperatingSystemVersionInfo ;;
   }
+  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
-  dimension: user_list_date_rule_item_info {
-    type: string
+  dimension_group: user_list_date_rule_item_info {
+    type: time
+    timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.UserListDateRuleItemInfo ;;
   }
   measure: count {

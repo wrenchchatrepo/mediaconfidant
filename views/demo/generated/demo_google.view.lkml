@@ -1,8 +1,8 @@
-# The name of this view in Looker is "Cyberdyne Google"
-view: cyberdyne_google {
+# The name of this view in Looker is "Demo Google"
+view: demo_google {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `doit-new-project.customers.cyberdyne_google` ;;
+  sql_table_name: `customers.demo_google` ;;
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
