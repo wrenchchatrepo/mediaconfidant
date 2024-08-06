@@ -16,19 +16,19 @@ explore: demo_ga4_refined {
   fields: [ALL_FIELDS*]
   # Join all refined views
   join: demo_bing_refined {
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${demo_bing_refined.user_list_date_rule_item_info_time} = ${demo_ga4_refined.event_timestamp_time} ;;
   }
   join: demo_google_refined {
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${demo_google_refined.user_list_date_rule_item_info_time} = ${demo_ga4_refined.event_timestamp_time} ;;
   }
   join: demo_facebook_refined {
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${demo_facebook_refined.user_list_date_rule_item_info_time} = ${demo_ga4_refined.event_timestamp_time} ;;
   }
   join: demo_tiktok_refined {
-    relationship: many_to_many
+    relationship: one_to_one
     sql_on: ${demo_tiktok_refined.user_list_date_rule_item_info_time} = ${demo_ga4_refined.event_timestamp_time} ;;
   }
 }
