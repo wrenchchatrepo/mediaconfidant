@@ -32,15 +32,3 @@ explore: demo_ga4_refined {
     sql_on: ${demo_tiktok_refined.user_list_date_rule_item_info_time} = ${demo_ga4_refined.event_timestamp_time} ;;
   }
 }
-
-# explore: demo_bing_refined {
-# }
-
-# explore: demo_google_refined {
-# }
-
-# explore: demo_facebook_refined {
-# }
-
-# explore: demo_tiktok_refined {
-# }
