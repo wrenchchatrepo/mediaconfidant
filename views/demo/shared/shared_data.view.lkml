@@ -11,6 +11,7 @@ view: shared_data {
   }
 
   dimension: gclid {
+    primary_key: yes
     type: string
     sql: ${TABLE}.gclid ;;
   }

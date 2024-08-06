@@ -9,4 +9,11 @@ view: demo_bing_refined {
     timeframes: [time, date, week, month, quarter, year]
     sql: ${TABLE}.user_list_date_rule_item_info ;;
   }
+
+  dimension: gclid {
+    primary_key: yes
+    type: string
+    sql: ${TABLE}.gclid ;;
+  }
+
 }
