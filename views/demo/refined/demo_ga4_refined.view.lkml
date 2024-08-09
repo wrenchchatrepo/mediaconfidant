@@ -5,6 +5,12 @@ view: demo_ga4_refined {
 
   # Add any necessary refined dimensions or measures if needed
   # For now, only including user_list_date_rule_item_info dimension group
+
+  dimension: vendor {
+    type: string
+    sql: 'GA4' ;;
+  }
+
   dimension: client_user_id {
     label: "User ID"
     type: string

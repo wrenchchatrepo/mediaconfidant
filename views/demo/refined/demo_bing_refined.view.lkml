@@ -10,6 +10,12 @@ view: demo_bing_refined {
   #   sql: ${TABLE}.user_list_date_rule_item_info ;;
   # }
 
+  dimension: vendor {
+    type: string
+    sql: 'Bing' ;;
+  }
+
+
   dimension: gclid {
     label: "User ID"
     primary_key: yes

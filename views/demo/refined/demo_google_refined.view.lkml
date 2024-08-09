@@ -9,6 +9,12 @@ view: demo_google_refined {
   #   sql: ${TABLE}.user_list_date_rule_item_info ;;
   # }
 
+  dimension: vendor {
+    type: string
+    sql: 'Google' ;;
+  }
+
+
   dimension: gclid {
     label: "User ID"
     primary_key: yes
