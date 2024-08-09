@@ -62,8 +62,8 @@ view: demo_bing_refined {
   dimension: money {
     label: "Revenue"
     type: number
-    sql: ${TABLE}.Money
-    value_format: "$#,##0.00" ;;
+    sql: ${TABLE}.Money ;;
+    value_format: "$#.00;($#.00)"
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
@@ -73,14 +73,16 @@ view: demo_bing_refined {
   measure: total_money {
     label: "Total Revenue"
     type: sum
-    sql: ${money}
-    value_format: "$#,##0.00";;  }
+    sql: ${money} ;;
+    value_format: "$#.00;($#.00)"
+  }
 
   measure: average_money {
     label: "Average Revenue"
     type: average
-    sql: ${money}
-    value_format: "$#,##0.00";;  }
+    sql: ${money} ;;
+    value_format: "$#.00;($#.00)"
+  }
 
   dimension: operating_system_version_info {
     label: "OS"
