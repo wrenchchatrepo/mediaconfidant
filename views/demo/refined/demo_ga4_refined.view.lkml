@@ -54,7 +54,7 @@ dimension: event_value_in_usd {
   label: "Revenue"
   type: number
   sql: ${TABLE}.event_value_in_usd
-  value_format: "$#,##0.00" ;;
+  # value_format: "$#,##0.00" ;;
 }
 
 # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
@@ -65,14 +65,14 @@ measure: total_event_value_in_usd {
   label: "Total Revenue"
   type: sum
   sql: ${event_value_in_usd}
-  value_format: "$#,##0.00" ;;
+  # value_format: "$#,##0.00" ;;
   }
 
 measure: average_event_value_in_usd {
   label: "Average Revenue"
   type: average
   sql: ${event_value_in_usd}
-  value_format: "$#,##0.00" ;;
+  # value_format: "$#,##0.00" ;;
   }
 
 dimension: geo_city {
