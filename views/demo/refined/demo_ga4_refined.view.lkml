@@ -65,13 +65,15 @@ measure: total_event_value_in_usd {
   label: "Total Revenue"
   type: sum
   sql: ${event_value_in_usd}
-  value_format: "$#,##0.00" ;;  }
+  value_format: "$#,##0.00" ;;
+  }
 
 measure: average_event_value_in_usd {
   label: "Average Revenue"
   type: average
   sql: ${event_value_in_usd}
-  value_format: "$#,##0.00" ;;  }
+  value_format: "$#,##0.00" ;;
+  }
 
 dimension: geo_city {
   label: "City State"
