@@ -7,32 +7,53 @@ This project follows a hub-and-spoke architecture to manage LookML models effici
 ### Project Structure
 
 ```
-your-project:
-  models:
-    - core_hub.model.lkml
-    - cyberdyne.model.lkml
-    - arkham.model.lkml
-  views:
+Dashboards:
+  - standard_reports.dashboard.lookml
+ML:
+  - CREATE_OR_REPLACE_MODEL_Churn.sql
+  - CREATE_OR_REPLACE_MODEL_forecasting.sql
+  - evaluate.sql
+  - kmeans_model.sql
+  - linear_regression_model.sql
+  - logistic_regression_model.sql
+  - lookerCREATE_OR_REPLACE_MODEL_CLV.sql
+  - predict.sql
+  - time_series_model.sql
+agent_support:
+  - README.md
+definitions:
+  customer_tables.sqlx
+  - first_view.sqlx
+  - second_view.sqlx
+  vendor_tables.sqlx
+models:
+  - demo.model.lkml
+repo:
+  - Git-Large-File-Storage.md
+  - workflow_settings.yaml
+views:
+  demo:
+    generated:
+      - demo_bing.view.lkml
+      - demo_facebook.view.lkml
+      - demo_ga4.view.lkml
+      - demo_google.view.lkml
+      - demo_tiktok.view.lkml
+    refined:
+      - demo_bing_refined.view.lkml
+      - demo_facebook_refined.view.lkml
+      - demo_ga4_refined.view.lkml
+      - demo_google_refined.view.lkml
+      - demo_tiktok_refined.view.lkml
     shared:
       - shared_data.view.lkml
-    cyberdyne:
-      - cyberdyne_ga4.view.lkml
-      - cyberdyne_bing.view.lkml
-      - cyberdyne_google.view.lkml
-      - cyberdyne_facebook.view.lkml
-      - cyberdyne_tiktok.view.lkml
-    arkham:
-      - arkham_ga4.view.lkml
-      - arkham_bing.view.lkml
-      - arkham_google.view.lkml
-      - arkham_facebook.view.lkml
-      - arkham_tiktok.view.lkml
-  dashboards:
-    - cyberdyne_dashboard.dashboard.lkml
-    - arkham_dashboard.dashboard.lkml
-  - .gitignore
-  - README.md
-  - LICENSE
+  - manifest.lkml
+  - data_tests.lkml
+- LICENSE
+- MERGE_MSG
+- README.md
+- package-lock.json
+- package.json
 ```
 
 ## Demo Model
@@ -47,29 +68,7 @@ The shared view (shared_data.view.lkml) contains common dimensions and measures 
 
 Each customer has its own model file that includes the core hub model and customer-specific views. The models define explores that join the shared data with customer-specific tables using fuzzy logic on timestamps.
 
-**Fuzzy Join Logic**
-
-To join customer-specific tables using fuzzy logic on timestamps, we use the TIMESTAMP_DIFF function to join the tables within a certain time range.
-
-  1.  Convert Timestamps to a Common Format:
-  • Ensure all timestamps are in the same time zone (e.g., UTC).
-  2.  Define the Time Range for Matching:
-  • Use a time window (e.g., 1 minute) for joining the datasets. This can be adjusted based on the specific requirements.
-  3.  Apply the Fuzzy Join in the Explore:
-  • Use the TIMESTAMP_DIFF function to create a join condition that checks if the difference between timestamps falls within the specified range.
-
-**Example of Fuzzy Join Logic**
-
-```
-join: cyberdyne_bing {
-  sql_on: TIMESTAMP_DIFF(${shared_data.event_timestamp}, ${cyberdyne_bing.UserListDateRuleItemInfo}, SECOND) BETWEEN -60 AND 60 ;;
-  relationship: many_to_one
-}
-```
-
-<h2><span style="color:#2d7eea">LookML Overview</span></h2>
-
-LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
+## LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
 
 LookML is powerful because it:
 
