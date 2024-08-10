@@ -1,5 +1,5 @@
 <h1><span style="color:#2d7eea">README - Your LookML Project</span></h1>
-
+[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
 ## LookML Project Structure and Conceptual Overview
 
 This project follows a hub-and-spoke architecture to manage LookML models efficiently. The core hub model contains shared views and configurations, while each customer has its own model and views extending the shared views.
