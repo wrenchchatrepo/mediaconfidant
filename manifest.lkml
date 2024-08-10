@@ -1,7 +1,7 @@
-project_name: "core_hub"
+project_name: "demo"
 
 local_dependency: {
-  project: "core_hub"
+  project: "demo"
 }
 
 # Add additional dependencies or constants if needed
