@@ -1,76 +1,8 @@
 <h1><span style="color:#2d7eea">README - Your LookML Project</span></h1>
 
-[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
+<h2><span style="color:#2d7eea">LookML Overview</span></h2>
 
-## LookML Project Structure and Conceptual Overview
-
-This project follows a hub-and-spoke architecture to manage LookML models efficiently. The core hub model contains shared views and configurations, while each customer has its own model and views extending the shared views.
-
-### Project Structure
-
-```
-Dashboards:
-  - standard_reports.dashboard.lookml
-ML:
-  - CREATE_OR_REPLACE_MODEL_Churn.sql
-  - CREATE_OR_REPLACE_MODEL_forecasting.sql
-  - evaluate.sql
-  - kmeans_model.sql
-  - linear_regression_model.sql
-  - logistic_regression_model.sql
-  - lookerCREATE_OR_REPLACE_MODEL_CLV.sql
-  - predict.sql
-  - time_series_model.sql
-agent_support:
-  - README.md
-definitions:
-  customer_tables.sqlx
-  - first_view.sqlx
-  - second_view.sqlx
-  vendor_tables.sqlx
-models:
-  - demo.model.lkml
-repo:
-  - Git-Large-File-Storage.md
-  - workflow_settings.yaml
-views:
-  demo:
-    generated:
-      - demo_bing.view.lkml
-      - demo_facebook.view.lkml
-      - demo_ga4.view.lkml
-      - demo_google.view.lkml
-      - demo_tiktok.view.lkml
-    refined:
-      - demo_bing_refined.view.lkml
-      - demo_facebook_refined.view.lkml
-      - demo_ga4_refined.view.lkml
-      - demo_google_refined.view.lkml
-      - demo_tiktok_refined.view.lkml
-    shared:
-      - shared_data.view.lkml
-  - manifest.lkml
-  - data_tests.lkml
-- LICENSE
-- MERGE_MSG
-- README.md
-- package-lock.json
-- package.json
-```
-
-## Demo Model
-
-The core hub model (core_hub.model.lkml) includes shared views and configurations. It serves as the base for all customer-specific models.
-
-**Shared View**
-
-The shared view (shared_data.view.lkml) contains common dimensions and measures that are used across multiple customer-specific datasets.
-
-**Customer-Specific Models**
-
-Each customer has its own model file that includes the core hub model and customer-specific views. The models define explores that join the shared data with customer-specific tables using fuzzy logic on timestamps.
-
-## LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
+LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
 
 LookML is powerful because it:
 
