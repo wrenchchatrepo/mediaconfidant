@@ -1,0 +1,87 @@
+# The name of this view in Looker is "P Ads Video 1962270511"
+view: p_ads_video_1962270511 {
+  # The sql_table_name parameter indicates the underlying database table
+  # to be used for all fields in this view.
+  sql_table_name: `google_ads.p_ads_Video_1962270511` ;;
+
+  # No primary key is defined for this view. In order to join this view in an Explore,
+  # define primary_key: yes on a dimension that has no repeated values.
+
+  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+
+  dimension_group: _partitiondate {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}._PARTITIONDATE ;;
+  }
+
+  dimension_group: _partitiontime {
+    type: time
+    timeframes: [raw, date, week, month, quarter, year]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}._PARTITIONTIME ;;
+  }
+    # Here's what a typical dimension looks like in LookML.
+    # A dimension is a groupable field that can be used to filter query results.
+    # This dimension will be called "Ad Group Ad Status" in Explore.
+
+  dimension: ad_group_ad_status {
+    type: string
+    description: "The status of the ad."
+    sql: ${TABLE}.ad_group_ad_status ;;
+  }
+
+  dimension: ad_group_id {
+    type: number
+    description: "The ID of the ad group."
+    sql: ${TABLE}.ad_group_id ;;
+  }
+
+  dimension: campaign_id {
+    type: number
+    description: "The ID of the campaign."
+    sql: ${TABLE}.campaign_id ;;
+  }
+
+  dimension: customer_id {
+    type: number
+    description: "The ID of the customer."
+    sql: ${TABLE}.customer_id ;;
+  }
+
+  dimension: video_duration_millis {
+    type: number
+    description: "The duration of the video in milliseconds."
+    sql: ${TABLE}.video_duration_millis ;;
+  }
+
+  # A measure is a field that uses a SQL aggregate function. Here are defined sum and average
+  # measures for this dimension, but you can also add measures of many different aggregates.
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
+  measure: total_video_duration_millis {
+    type: sum
+    sql: ${video_duration_millis} ;;  }
+  measure: average_video_duration_millis {
+    type: average
+    sql: ${video_duration_millis} ;;  }
+
+  dimension: video_id {
+    type: string
+    description: "The ID of the video."
+    sql: ${TABLE}.video_id ;;
+  }
+
+  dimension: video_title {
+    type: string
+    description: "The title of the video."
+    sql: ${TABLE}.video_title ;;
+  }
+  measure: count {
+    type: count
+  }
+}
