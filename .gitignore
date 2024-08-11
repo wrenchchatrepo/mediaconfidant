@@ -5,3 +5,4 @@ views/.DS_Store
 # Ignore the readme-ai directory
 readme-ai/
 
+looker.ini
