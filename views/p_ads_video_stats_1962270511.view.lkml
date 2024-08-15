@@ -184,11 +184,11 @@ view: p_ads_video_stats_1962270511 {
     sql: ${TABLE}.segments_week ;;
   }
 
-  dimension: segments_year {
-    type: number
-    description: "Year, formatted as yyyy."
-    sql: ${TABLE}.segments_year ;;
-  }
+  # dimension: segments_year {
+  #   type: number
+  #   description: "Year, formatted as yyyy."
+  #   sql: ${TABLE}.segments_year ;;
+  # }
 
   dimension: video_channel_id {
     type: string

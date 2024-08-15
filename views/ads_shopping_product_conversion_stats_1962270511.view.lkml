@@ -297,10 +297,10 @@ view: ads_shopping_product_conversion_stats_1962270511 {
     sql: ${TABLE}.segments_week ;;
   }
 
-  dimension: segments_year {
-    type: number
-    sql: ${TABLE}.segments_year ;;
-  }
+  # dimension: segments_year {
+  #   type: number
+  #   sql: ${TABLE}.segments_year ;;
+  # }
   measure: count {
     type: count
     drill_fields: [segments_conversion_action_name]

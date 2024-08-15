@@ -152,10 +152,10 @@ view: ads_asset_group_product_group_stats_1962270511 {
     sql: ${TABLE}.segments_week ;;
   }
 
-  dimension: segments_year {
-    type: number
-    sql: ${TABLE}.segments_year ;;
-  }
+  # dimension: segments_year {
+  #   type: number
+  #   sql: ${TABLE}.segments_year ;;
+  # }
   measure: count {
     type: count
     drill_fields: [asset_group_product_group_view_resource_name]

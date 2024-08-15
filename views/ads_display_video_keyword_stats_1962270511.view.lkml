@@ -177,10 +177,10 @@ view: ads_display_video_keyword_stats_1962270511 {
     sql: ${TABLE}.segments_week ;;
   }
 
-  dimension: segments_year {
-    type: number
-    sql: ${TABLE}.segments_year ;;
-  }
+  # dimension: segments_year {
+  #   type: number
+  #   sql: ${TABLE}.segments_year ;;
+  # }
   measure: count {
     type: count
     drill_fields: [campaign_name, ad_group_name]
