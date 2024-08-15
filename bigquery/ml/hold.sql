@@ -1,1 +1,9 @@
-
+create_dnn_classifier_model	SQL	Aug 11, 2024, 12:34:58 PM UTC-5	dion@wrench.chat	
+create_kmeans_model	SQL	Aug 9, 2024, 8:50:25 AM UTC-5	dion@wrench.chat	
+create_linear_regression_model	SQL	Aug 9, 2024, 8:44:46 AM UTC-5	dion@wrench.chat	
+create_logistic_regression_model	SQL	Aug 9, 2024, 8:46:30 AM UTC-5	dion@wrench.chat	
+create_random_forest_model	SQL	Aug 11, 2024, 1:16:39 PM UTC-5	dion@wrench.chat	
+create_time_series_model	SQL	Aug 9, 2024, 8:50:44 AM UTC-5	dion@wrench.chat	
+evaluate_models	SQL	Aug 9, 2024, 8:56:17 AM UTC-5	dion@wrench.chat	
+predict_models	SQL	Aug 9, 2024, 2:22:47 PM UTC-5	dion@wrench.chat	
+union_customers_tables-all_data	SQL	Aug 9, 2024, 8:41:40 AM UTC-5	dion@wrench.chat	
