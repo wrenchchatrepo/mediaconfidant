@@ -7,7 +7,7 @@ marketplace_ref: {
   listing: "google-ads-transfer-v2"
   version: "3.0.0"
   models: ["block_google_ads_transfer_new_v2"]
-  override_constant: CONNECTION_NAME { value:"test-conn" }
+  override_constant: CONNECTION_NAME { value:"youfit" }
   override_constant: GOOGLE_ADS_SCHEMA { value:"google_ads" }
-  override_constant: GOOGLE_ADS_CUSTOMER_ID { value:"47173" }
+  override_constant: GOOGLE_ADS_CUSTOMER_ID { value:"1962270511" }
 }
