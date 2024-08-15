@@ -1,0 +1,25 @@
+function createdemoTable(tableName) { return `
+CREATE TABLE
+  ${tableName} ( gclid STRING,
+    UserListDateRuleItemInfo TIMESTAMP,
+    EventItemAttribute STRING,
+    Money INT64,
+    DeviceCategory STRING,
+    MobileDeviceInfo STRING,
+    OperatingSystemVersionInfo STRING,
+    BrowserVersionInfo STRING,
+    GeoPointInfo STRING,
+    eoPointInfoState STRING,
+    GeoPointInfoCity STRING ) `; } config({ type: "table" }); EXECUTE(createdemoTable("demo_bing")); config({ type: "table" }); EXECUTE(createdemoTable("demo_google")); config({ type: "table" }); EXECUTE(createdemoTable("demo_tiktok")); config({ type: "table" }); EXECUTE(createdemoTable("demo_facebook")); // Handle demo_ga4 separately due TO its different SCHEMA config({ type: "table" }); EXECUTE(`
+CREATE TABLE
+  demo_ga4 ( client_user_id STRING,
+    event_timestamp TIMESTAMP,
+    event_name STRING,
+    event_value_in_usd INT64,
+    device_category STRING,
+    device_brand_name STRING,
+    device_operating_system_version STRING,
+    device_web_info_browser_version STRING,
+    geo_country STRING,
+    geo_region STRING,
+    geo_city STRING ) `);
