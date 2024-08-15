@@ -1,5 +1,5 @@
 # Time Series Forecasting (ARIMA_PLUS)
-# Use Case: Predicting future values based on time-series data (e.g., forecasting future revenue)
+# Use Case: Predicting future values based on time-series data (Return On Ad Spend)
 CREATE OR REPLACE MODEL `doit-new-project.customers.time_series_model`
 OPTIONS(
   model_type = 'arima_plus',

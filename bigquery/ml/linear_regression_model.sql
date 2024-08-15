@@ -1,5 +1,5 @@
 # Linear Regression
-# Use Case: Predicting a continuous value (e.g., predicting revenue)
+# Use Case: Predicting a continuous value (Revenue Prediction)
 CREATE OR REPLACE MODEL `doit-new-project.customers.linear_regression_model`
 OPTIONS(model_type='linear_reg') AS
 SELECT
