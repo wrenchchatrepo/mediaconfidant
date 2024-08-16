@@ -1,5 +1,5 @@
 # Logistic Regression (for Classification Problems)
-# Use Case: Predicting binary outcomes (e.g., whether a user will make a purchase or not)
+# Use Case: Predicting binary outcomes (Propensity to Buy)
 CREATE OR REPLACE MODEL `doit-new-project.customers.logistic_regression_model`
 OPTIONS(model_type='logistic_reg') AS
 SELECT
