@@ -60,7 +60,7 @@ containers/
 -dockerfiles/ 
 -pulumi/ # Infrastructure As Code
 --programs/
-definitions/ # Dataform SQLX transformations
+dataform/ # Dataform SQLX transformations
 looker/
 -demo/ # Vendor model for demos
 --views/
