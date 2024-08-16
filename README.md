@@ -1,7 +1,7 @@
 <h1><span style="color:#2d7eea">README - Your LookML Project</span></h1>
 
 [![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
-![Mediaconfidant](https://github.com/user-attachments/assets/17234773-6e64-43b5-be80-f6ebf41e2103)
+
 
 ## LookML Project Structure and Conceptual Overview
 
@@ -10,6 +10,8 @@ This project follows a hub-and-spoke architecture to manage LookML models effici
 The Data Product is a result of the Analytics Pipeline: the data model includes a semantic layer and data transformations both with version control, sophisticated analytics, practical ML, and data integrity. This solution is intended to be a blueprint for the customer MediaConfidant to build on Google Cloud. Infrastructure and Analytics as Code means instructions are provided for provisioning the infrastructure, code snippets as examples, and thorough documentation for every step.
 
 The modern data stack is a collection of tools that work together to help businesses collect, clean, analyze, and visualize data. Dataform, Looker, and BigQuery create a powerful analytical stack but are only part of the solution. This document outlines the necessary supporting infrastructure with the following objectives:
+
+![Mediaconfidant](https://github.com/user-attachments/assets/17234773-6e64-43b5-be80-f6ebf41e2103)
 
 **Improved data insights:** BigQuery's analytics engine can be used with Looker to produce more than just data.
 
