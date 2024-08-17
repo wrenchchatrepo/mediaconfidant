@@ -2,7 +2,7 @@
 connection: "youfit"
 
 # include all the views
-include: "/views/vendors.view.lkml"
+include: "/views/ads_account*.view.lkml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
@@ -25,10 +25,10 @@ persist_with: marketplace_google_ads_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-# explore: ads_account_basic_stats_1962270511 {}
-# explore: ads_account_stats_1962270511 {}
-# explore: ads_account_conversion_stats_1962270511 {}
-# explore: ads_account_non_click_stats_1962270511 {}
+explore: ads_account_basic_stats_1962270511 {}
+explore: ads_account_stats_1962270511 {}
+explore: ads_account_conversion_stats_1962270511 {}
+explore: ads_account_non_click_stats_1962270511 {}
 
 # explore: ads_ad_basic_stats_1962270511 {}
 # explore: ads_ad_conversion_stats_1962270511 {}
