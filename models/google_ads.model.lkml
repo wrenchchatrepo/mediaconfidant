@@ -7,12 +7,12 @@ include: "/views/vendors.view.lkml"
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
-datagroup: marketplace_google-ads_default_datagroup {
+datagroup: marketplace_google_ads_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
-persist_with: marketplace_google-ads_default_datagroup
+persist_with: marketplace_google_ads_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -25,10 +25,10 @@ persist_with: marketplace_google-ads_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: ads_account_basic_stats_1962270511 {}
-explore: ads_account_stats_1962270511 {}
-explore: ads_account_conversion_stats_1962270511 {}
-explore: ads_account_non_click_stats_1962270511 {}
+# explore: ads_account_basic_stats_1962270511 {}
+# explore: ads_account_stats_1962270511 {}
+# explore: ads_account_conversion_stats_1962270511 {}
+# explore: ads_account_non_click_stats_1962270511 {}
 
 # explore: ads_ad_basic_stats_1962270511 {}
 # explore: ads_ad_conversion_stats_1962270511 {}
