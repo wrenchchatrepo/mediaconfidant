@@ -2,7 +2,7 @@
 connection: "pipeline"
 
 # include all the views
-include: "//looker/demo/**/*"
+include: "/looker/demo/**/*"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.

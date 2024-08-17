@@ -1,4 +1,4 @@
-include: "//looker/marketplace_ga4/**/*"
+include: "/looker/marketplace_ga4/**/*"
 
 
 # #
