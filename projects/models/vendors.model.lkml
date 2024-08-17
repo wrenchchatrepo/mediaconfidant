@@ -1,18 +1,18 @@
 # Define the database connection to be used for this model.
-connection: "pipeline"
+# connection: "pipeline"
 
 # include all the views
-include: "/views/vendors.view.lkml"
+# include: "/views/vendors.view.lkml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
 
-datagroup: vendors_default_datagroup {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "1 hour"
-}
+# datagroup: vendors_default_datagroup {
+#   # sql_trigger: SELECT MAX(id) FROM etl_log;;
+#   max_cache_age: "1 hour"
+# }
 
-persist_with: vendors_default_datagroup
+# persist_with: vendors_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
 # relationships between fields. By joining a view into an Explore, you make those
@@ -25,4 +25,4 @@ persist_with: vendors_default_datagroup
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.
 # Each joined view also needs to define a primary key.
 
-explore: vendors {}
+# explore: vendors {}

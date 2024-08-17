@@ -1,8 +1,8 @@
-connection: "@{GA4_CONNECTION}"
+connection: "gildedritual"
 
-include: "/dashboards/*.dashboard"
-include: "/explores/*.explore.lkml"
-include: "/views/**/*.view.lkml"
+include: "/ga4/dashboards/*"
+include: "/ga4/explores/sessions.explore.lkml"
+include: "/manifest.lkml"
 
 label: "Google Analytics 4"
 

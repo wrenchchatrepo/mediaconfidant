@@ -316,10 +316,10 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: AR Steps
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#E8710A",
-        font_color: "#ffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#E8710A",
+    #     font_color: "#ffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -359,10 +359,10 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Integrated value
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#12B5CB",
-        font_color: "#ffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#12B5CB",
+    #     font_color: "#ffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -402,10 +402,10 @@
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
     single_value_title: Moving Averages
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#A8A116",
-        font_color: "#fff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#A8A116",
+    #     font_color: "#fff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     show_row_numbers: true
     transpose: false
@@ -449,10 +449,10 @@
     conditional_formatting_include_nulls: false
     single_value_title: Lower Bound
     value_format: '0.00'
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
-        font_color: "#ffffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
+    #     font_color: "#ffffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     defaults_version: 1
     hidden_fields: [forecasting.forecast_value]
@@ -498,10 +498,10 @@
     conditional_formatting_include_nulls: false
     single_value_title: Users Expected Tomorrow
     value_format: '0.00'
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
-        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
+    #     font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     defaults_version: 1
     listen:
@@ -534,10 +534,10 @@
     conditional_formatting_include_nulls: false
     single_value_title: Upper Bound
     value_format: '0.00'
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#EA4335",
-        font_color: "#ffffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#EA4335",
+    #     font_color: "#ffffff", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     show_view_names: false
     defaults_version: 1
     hidden_fields: [forecasting.forecast_value, forecasting.prediction_interval_lower_bound]

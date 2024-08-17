@@ -38,11 +38,11 @@
     custom_color: "#FFF"
     single_value_title: Sessions
     comparison_label: First Visit Sessions
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
-        font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
-    x_axis_gridlines: false
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
+    #     font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
+    # x_axis_gridlines: false
     y_axis_gridlines: true
     show_view_names: false
     show_y_axis_labels: true
@@ -141,10 +141,10 @@
     custom_color: "#FFF"
     single_value_title: Total Users
     comparison_label: Returning Users
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
-        font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
+    #     font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     listen:
       Audience Cohort [Required]: sessions.audience_selector
@@ -209,10 +209,10 @@
     totals_color: "#808080"
     custom_color: "#FFF"
     comparison_label: Unique Page Views
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#c73727",
-        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#c73727",
+    #     font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -289,10 +289,10 @@
     custom_color: "#FFF"
     single_value_title: Sessions
     comparison_label: First Visit Sessions
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
-        font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#F9AB00",
+    #     font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     note_state: collapsed
     note_display: hover
@@ -364,10 +364,10 @@
     custom_color: "#FFF"
     single_value_title: Total Users
     comparison_label: Returning Users
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
-        font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#1A73E8",
+    #     font_color: "#FFF", color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     listen:
       Audience Cohort [Required]: sessions.audience_selector
@@ -432,10 +432,10 @@
     conditional_formatting_include_nulls: false
     custom_color: "#FFF"
     comparison_label: Unique Page Views
-    conditional_formatting: [{type: not null, value: !!null '', background_color: "#c73727",
-        font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
-          palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
-        strikethrough: false, fields: !!null ''}]
+    # conditional_formatting: [{type: not null, value: !!null '', background_color: "#c73727",
+    #     font_color: !!null '', color_application: {collection_id: 7c56cc21-66e4-41c9-81ce-a60e1c3967b2,
+    #       palette_id: 56d0c358-10a0-4fd6-aa0b-b117bef527ab}, bold: false, italic: false,
+    #     strikethrough: false, fields: !!null ''}]
     defaults_version: 1
     hidden_fields: []
     y_axes: []
@@ -696,9 +696,9 @@
     sorts: [sessions.total_sessions desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{table_calculation: of_total, label: "% of Total", expression: "${sessions.total_sessions}/sum(${sessions.total_sessions})",
-        value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        _type_hint: number}]
+    # dynamic_fields: [{table_calculation: of_total, label: "% of Total", expression: "${sessions.total_sessions}/sum(${sessions.total_sessions})",
+    #     value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
+    #     _type_hint: number}]
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
@@ -760,9 +760,9 @@
     sorts: [sessions.total_sessions desc]
     limit: 500
     column_limit: 50
-    dynamic_fields: [{table_calculation: of_total, label: "% of Total", expression: "${sessions.total_sessions}/sum(${sessions.total_sessions})",
-        value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        _type_hint: number}]
+    # dynamic_fields: [{table_calculation: of_total, label: "% of Total", expression: "${sessions.total_sessions}/sum(${sessions.total_sessions})",
+    #     value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
+    #     _type_hint: number}]
     x_axis_gridlines: false
     y_axis_gridlines: false
     show_view_names: false
