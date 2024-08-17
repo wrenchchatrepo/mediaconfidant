@@ -1,9 +1,0 @@
-# Ignore macOS system files
-.DS_Store
-views/.DS_Store
-
-# Ignore the readme-ai directory
-readme-ai/
-
-looker.ini.DS_Store
-.DS_Store
