@@ -2,7 +2,6 @@
 connection: "youfit"
 
 # include all the views
-include: "/views/vendors.view.lkml"
 include: "/views/ads_account*.view.lkml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
