@@ -1,13 +1,5 @@
 local_dependency: {
-
   project: "marketplace_google-ads"
-  override_constant: constant_name {
-    value: "string value"
-  }
-
-  # override_constant: CONNECTION_NAME {
-  #   value: "youfit"
-  # }
 
   override_constant: GOOGLE_ADS_SCHEMA {
     value: "google_ads"
@@ -17,14 +9,14 @@ local_dependency: {
     value: "1962270511"
   }
 
-  project: "ga4"
-  override_constant: constant_name {
-    value: "string value"
-  }
-
-  # override_constant: GA4_CONNECTION_NAME {
-  #   value: "gildedritual"
+  # Uncomment if needed
+  # override_constant: CONNECTION_NAME {
+  #   value: "youfit"
   # }
+}
+
+local_dependency: {
+  project: "ga4"
 
   override_constant: GA4_SCHEMA {
     value: "april2test"
@@ -42,6 +34,7 @@ local_dependency: {
     value: "60"
     #export: override_optional
   }
+
   override_constant: BQML_PARAMETER {
     value: "Yes"
   }
@@ -57,17 +50,9 @@ local_dependency: {
   override_constant: GA4_BQML_future_synth_months {
     value: "12"
   }
+
+  # Uncomment if needed
+  # override_constant: GA4_CONNECTION_NAME {
+  #   value: "gildedritual"
+  # }
 }
-
-
-# project_name: "google-adwords"
-
-# constant: CONNECTION_NAME {
-#   value: "looker_app_2"
-#   export: override_optional
-# }
-
-# constant: GOOGLE_ADS_SCHEMA {
-#   value: "ADWORDS"
-#   export: override_optional
-# }
