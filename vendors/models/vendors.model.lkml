@@ -2,7 +2,7 @@
 connection: "pipeline"
 
 # include all the views
-include: "/views/vendors.view.lkml"
+include: "/vendors/views/vendors.view.lkml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
