@@ -1,0 +1,3 @@
+marketplace: {
+  listing: "ga4"
+}
