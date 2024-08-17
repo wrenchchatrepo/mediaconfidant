@@ -2,7 +2,7 @@
 connection: "youfit"
 
 # include all the views
-include: "/views/**/*.view.lkml"
+include: "/looker/marketplace_google-ads/**/*"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
@@ -460,4 +460,3 @@ explore: p_ads_video_conversion_stats_1962270511 {}
 explore: p_ads_video_1962270511 {}
 
 explore: p_ads_video_stats_1962270511 {}
-
