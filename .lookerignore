@@ -1,0 +1,16 @@
+# Ignore specific file types
+*.log
+*.bak
+*.ini
+
+# Ignore specific files
+Agentic_System.md
+budget_report.png
+LICENSE
+
+# Ignore these directories and their files
+bigquery/
+containers/
+google_adwords/
+looker-explore-assistant/
+spectacles/
