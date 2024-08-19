@@ -32,7 +32,7 @@ local_dependency: {
 
   override_constant: model_step_prediction {
     value: "60"
-    #export: override_optional
+    # export: override_optional
   }
 
   override_constant: BQML_PARAMETER {
@@ -54,5 +54,19 @@ local_dependency: {
   # Uncomment if needed
   # override_constant: GA4_CONNECTION_NAME {
   #   value: "gildedritual"
+  # }
+}
+
+local_dependency: {
+  project: "vendors"
+
+  # Add any necessary override constants here
+  # override_constant: VENDOR_SCHEMA {
+  #   value: "your_value_here"
+  # }
+
+  # Uncomment if needed
+  # override_constant: VENDOR_CONNECTION_NAME {
+  #   value: "your_connection_name_here"
   # }
 }

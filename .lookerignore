@@ -4,11 +4,11 @@
 *.ini
 
 # Ignore specific files
-Agentic_System.md
 budget_report.png
 LICENSE
 
 # Ignore these directories and their files
+agentic_systems/
 bigquery/
 containers/
 google_adwords/
