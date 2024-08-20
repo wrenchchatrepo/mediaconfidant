@@ -2,7 +2,7 @@
 connection: "pipeline"
 
 # include all the views
-include: "/views/**/*.view.lkml"
+include: "/vendors/views/vendors.view.lkml"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
@@ -26,4 +26,3 @@ persist_with: vendors_default_datagroup
 # Each joined view also needs to define a primary key.
 
 explore: vendors {}
-

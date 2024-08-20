@@ -1,0 +1,22 @@
+# Ignore specific file types
+*.log
+*.bak
+*.ini
+
+# Ignore specific files
+budget_report.png
+LICENSE
+marketplace_lock.lkml
+refinements.lkml
+
+# Ignore these directories and their files
+agentic_systems/
+bigquery/
+containers/
+dataform/
+ga4/
+google_adwords/
+looker-explore-assistant/
+marketplace_google/
+spectacles/
+views/
