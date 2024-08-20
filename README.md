@@ -1,7 +1,7 @@
 # README
 
 [![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
-
+**&larr;&larr;&larr;CLICK HERE TO SEE OUR AI POWERED WIKI!**
 
 ## LookML Project Structure and Conceptual Overview
 
@@ -50,29 +50,24 @@ The modern data stack is a collection of tools that work together to help busine
 + Looker API & Extensions: Extend Looker’s functionality for custom solutions.
 + Looker Visualizations: This area connects directly with end users (MC Customers and BYOV - Bring Your Own Visualization), delivering insights and visualizations.
 
-## Project Structure
+## 4. Project Structure
+- **agentic_system/**  *Readmes for AI system*
+- **bigquery/**   *BQML files*  
+  - **ml/**  *ML SQL statements*  
+  - **sql/**  *Useful SQL*
+- **containers/**  *Infrastructure As Code*  
+  - **dockerfiles/**  *Docker for Pulumi*  
+  - **pulumi/**  *Deploy programs*  
+    - **programs/**  *Pulumi deploy files*
+- **dataform/**  *SQLX transformations*
+- **ga4/**  *Undeployed Looker model*
+- **google-adwords/**  *Undeployed Looker model*
+- **looker-explore-assistant/**  *Gemini for Looker*
+- **marketplace_google-ads/**  *Undeployed Looker model*
+- **spectacles/**  *Recommendation to use Spectacles*
+- **vendors/**  *Deployed Looker model*
 
-```
-bigquery/
--ml/ # Machine Learning SQL statements
--sql/ # Useful SQL
-containers/
--dockerfiles/
--pulumi/ # Infrastructure As Code
---programs/
-definitions/ # Dataform SQLX transformations
-looker/
--demo/ # Vendor model for demos
---views/
--marketplace_ga4/ # GA4 model
--marketplace_google-ads-transfer-v2/ # Google Ads model
---views/
-spectacles/ # Recommendation to use Spectacles
-Agentic_System.md # A proposal for a Gemini Agentic Sytem
-README.md
-```
-
-## LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
+# LookML is a data modeling language for describing dimensions, fields, aggregates and relationships based on SQL.
 
 LookML is powerful because it:
 
