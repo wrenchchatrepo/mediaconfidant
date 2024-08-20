@@ -62,6 +62,7 @@ The modern data stack is a collection of tools that work together to help busine
 - **dataform/**  *SQLX transformations*
 - **ga4/**  *Undeployed Looker model*
 - **google-adwords/**  *Undeployed Looker model*
+- **instructions/**  *on how to do most stuff*
 - **looker-explore-assistant/**  *Gemini for Looker*
 - **marketplace_google-ads/**  *Undeployed Looker model*
 - **spectacles/**  *Recommendation to use Spectacles*
