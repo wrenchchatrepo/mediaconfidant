@@ -1,0 +1,21 @@
+config {
+    type: `table`,
+    description: `Vendors data from the customers dataset`,
+    dependencies: [`doit-new-project.customers.vendors`]
+}
+
+SELECT
+  UserID,
+  DTS,
+  Campaign,
+  Revenue,
+  DeviceCategory,
+  Manufacturer,
+  OS,
+  Browser,
+  Country,
+  State,
+  CityState,
+  Vendor
+FROM
+  ${ref(`doit-new-project.customers.vendors)}
