@@ -17,6 +17,9 @@ containers/
 dataform/
 ga4/
 google_adwords/
+help_docs/
+instructions/
 looker-explore-assistant/
-marketplace_google/
+marketplace_google-ads/
+spectacles/
 views/
