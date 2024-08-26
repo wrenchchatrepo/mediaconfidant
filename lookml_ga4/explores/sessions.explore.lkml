@@ -1,3 +1,5 @@
+connection: "empyrean-backup-411421"
+
 include: "/lookml_ga4/views/*.view.lkml"
 include: "/lookml_ga4/views/*/*.view.lkml"
 include: "/lookml_ga4/views/*/*/*.view.lkml"

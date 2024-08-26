@@ -1,4 +1,4 @@
-connection: "@{GA4_CONNECTION}"
+connection: "empyrean-backup-411421"
 
 include: "/lookml_ga4/dashboards/*.dashboard"
 include: "/lookml_ga4/explores/*.explore.lkml"
