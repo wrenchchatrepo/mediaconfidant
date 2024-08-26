@@ -1,8 +1,8 @@
 connection: "@{GA4_CONNECTION}"
 
-include: "/dashboards/*.dashboard"
-include: "/explores/*.explore.lkml"
-include: "/views/**/*.view.lkml"
+include: "/lookml_ga4/dashboards/*.dashboard"
+include: "/lookml_ga4/explores/*.explore.lkml"
+include: "/lookml_ga4/views/**/*.view.lkml"
 
 label: "Google Analytics 4"
 

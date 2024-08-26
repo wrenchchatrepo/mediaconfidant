@@ -1,4 +1,4 @@
-include: "/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
 view: session_facts{
   derived_table: {
    #datagroup_trigger: ga4_main_datagroup

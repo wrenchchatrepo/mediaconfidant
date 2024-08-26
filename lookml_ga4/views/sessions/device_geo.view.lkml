@@ -1,4 +1,4 @@
-include: "/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
 view: device_geo{
   derived_table:{
     sql_trigger_value: ${session_event_packing.SQL_TABLE_NAME} ;;

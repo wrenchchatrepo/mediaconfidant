@@ -1,7 +1,7 @@
-include: "/views/*.view.lkml"
-include: "/views/*/*.view.lkml"
-include: "/views/*/*/*.view.lkml"
-include: "/attributes/*.lkml"
+include: "/lookml_ga4/views/*.view.lkml"
+include: "/lookml_ga4/views/*/*.view.lkml"
+include: "/lookml_ga4/views/*/*/*.view.lkml"
+include: "/lookml_ga4/attributes/*.lkml"
 
 explore: sessions {
   label: "GA4 Sessions Beta"

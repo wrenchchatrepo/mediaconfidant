@@ -1,6 +1,6 @@
 ######################## TRAINING/TESTING INPUTS #############################
-include: "/views/bqml/purchase_propensity/*.view"
-include: "/views/sessions/*.view"
+include: "/lookml_ga4/views/bqml/purchase_propensity/*.view"
+include: "/lookml_ga4/views/sessions/*.view"
 
 ######################## MODEL #############################
 

@@ -1,4 +1,4 @@
-include: "/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
 view: testing_input {
   derived_table: {
     sql_trigger_value: ${training_input.SQL_TABLE_NAME} ;;

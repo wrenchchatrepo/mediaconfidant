@@ -1,5 +1,5 @@
-include: "/views/sessions/*.view.lkml"
-include: "/views/*/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/*/*.view.lkml"
 view: training_input {
   derived_table: {
     #datagroup_trigger: bqml_datagroup

@@ -1,4 +1,3 @@
-
 - dashboard: ga4_page_funnel
   title: "[GA4] Page Funnel"
   layout: newspaper

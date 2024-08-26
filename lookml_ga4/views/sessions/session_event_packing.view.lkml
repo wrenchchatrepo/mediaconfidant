@@ -1,4 +1,4 @@
-include: "/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
 view: session_event_packing {
   derived_table:{
     sql_trigger_value: ${session_facts.SQL_TABLE_NAME} ;;

@@ -1,5 +1,5 @@
-include: "/views/sessions/*.view.lkml"
-include: "/views/*/*.view.lkml"
+include: "/lookml_ga4/views/sessions/*.view.lkml"
+include: "/lookml_ga4/views/*/*.view.lkml"
 view: training_data_avbb {
   derived_table: {
     sql_trigger_value: ${forecasting.SQL_TABLE_NAME} ;;

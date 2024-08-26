@@ -1,4 +1,3 @@
----
 - dashboard: avbb
   title: "[GA4] AVBB Model"
   layout: newspaper

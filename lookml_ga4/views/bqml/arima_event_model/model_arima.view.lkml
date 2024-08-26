@@ -1,5 +1,5 @@
-include: "/views/*.view.lkml"
-include: "/views/bqml/*/*.view.lkml"
+include: "/lookml_ga4/views/*.view.lkml"
+include: "/lookml_ga4/views/bqml/*/*.view.lkml"
 view: model_arima {
   #extension: required
   derived_table: {

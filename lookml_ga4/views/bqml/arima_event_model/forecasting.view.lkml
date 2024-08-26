@@ -1,4 +1,4 @@
-include: "/views/bqml/*/*.view.lkml"
+include: "/lookml_ga4/views/bqml/*/*.view.lkml"
 view: forecasting {
   derived_table: {
     sql_trigger_value: ${model_arima.SQL_TABLE_NAME} ;;

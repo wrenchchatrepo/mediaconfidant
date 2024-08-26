@@ -1,7 +1,7 @@
-include: "/explores/sessions.explore.lkml"
-include: "/views/*/*.view.lkml"
-include: "/views/bqml/*/*.view.lkml"
-include: "/views/*.view.lkml"
+include: "/lookml_ga4/explores/sessions.explore.lkml"
+include: "/lookml_ga4/views/*/*.view.lkml"
+include: "/lookml_ga4/views/bqml/*/*.view.lkml"
+include: "/lookml_ga4/views/*.view.lkml"
 
 explore: pred_history {}
 view: pred_history {

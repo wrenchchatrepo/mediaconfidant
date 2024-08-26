@@ -1,5 +1,5 @@
-include: "/views/event_data_dimensions/event_funnel.view"
-include: "/views/event_data_dimensions/page_funnel.view"
+include: "/lookml_ga4/views/event_data_dimensions/event_funnel.view"
+include: "/lookml_ga4/views/event_data_dimensions/page_funnel.view"
 
 view: session_list_with_event_history {
   derived_table: {

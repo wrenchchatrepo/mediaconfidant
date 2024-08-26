@@ -1,4 +1,3 @@
----
 - dashboard: arima
   title: "[GA4] ARIMA Model"
   layout: newspaper

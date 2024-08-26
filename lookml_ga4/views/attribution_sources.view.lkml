@@ -1,4 +1,4 @@
-include: "/views/attribution_sources/*.view.lkml"
+include: "/lookml_ga4/views/attribution_sources/*.view.lkml"
 view: attribution_sources {
 dimension: attribution_source_channel {
   group_label: "Session Traffic Source"

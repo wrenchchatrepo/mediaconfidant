@@ -1,7 +1,7 @@
-include: "/views/event_data_dimensions/event_funnel.view"
-include: "/views/event_data_dimensions/page_funnel.view"
-include: "/views/sessions/*.view"
-include: "/views/bqml/*/*.view"
+include: "/lookml_ga4/views/event_data_dimensions/event_funnel.view"
+include: "/lookml_ga4/views/event_data_dimensions/page_funnel.view"
+include: "/lookml_ga4/views/sessions/*.view"
+include: "/lookml_ga4/views/bqml/*/*.view"
 
 view: sessions {
   derived_table: {
