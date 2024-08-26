@@ -33,8 +33,9 @@ view: synthdata {
   }
 
 # Dimension mapping city-state combinations to postal codes
-  dimension: city_postal_code {
-    sql: CASE
+    dimension: city_postal_code {
+      type: zipcode  # Set the type to zipcode for map visualizations
+      sql: CASE
           WHEN ${TABLE}.city_state = 'New York-NY' THEN '10001'  -- New York, NY
           WHEN ${TABLE}.city_state = 'Los Angeles-CA' THEN '90001'  -- Los Angeles, CA
           WHEN ${TABLE}.city_state = 'Austin-TX' THEN '73301'  -- Austin, TX
@@ -44,15 +45,8 @@ view: synthdata {
           WHEN ${TABLE}.city_state = 'Philadelphia-PA' THEN '19101'  -- Philadelphia, PA
           ELSE NULL
         END ;;
-    map_layer_name: postal_codes_layer  # Reference the custom map layer
-  }
-
-# Dimension using the postal code directly from the dataset
-  dimension: postal_code {
-    type: string
-    map_layer_name: postal_codes_layer  # Reference the custom map layer
-    sql: ${TABLE}.postal_code  # The column in your dataset that matches the GeoJSON feature_key
-  }
+      map_layer_name: postal_codes_layer  # Reference the custom map layer
+    }
 
   dimension: clicks_t1000 {
     type: number
