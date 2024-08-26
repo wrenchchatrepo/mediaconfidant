@@ -43,6 +43,7 @@ view: synthdata {
           WHEN ${TABLE}.city_state = 'Philadelphia-PA' THEN '19101'  -- Philadelphia, PA
           ELSE NULL
         END ;;
+        map_layer_name: "us_postal_code"
   }
 
   dimension: clicks_t1000 {
