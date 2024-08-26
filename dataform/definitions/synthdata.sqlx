@@ -1,0 +1,21 @@
+config {
+    type: `table`,
+    description: `Synthetic data from the synthetic dataset`,
+    dependencies: [`doit-new-project.synthetic.synthdata`]
+}
+
+SELECT
+  id,
+  dts,
+  vendors,
+  city_state,
+  impressions_t800,
+  impressions_t1000,
+  clicks_t800,
+  clicks_t1000,
+  buys_t800,
+  buys_t1000,
+  rev_t800,
+  rev_t000
+FROM
+  ${ref(`doit-new-project.synthetic.synthdata`)}
