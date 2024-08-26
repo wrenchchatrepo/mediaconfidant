@@ -26,3 +26,11 @@ persist_with: synthetic_data_default_datagroup
 # Each joined view also needs to define a primary key.
 
 explore: synthdata {}
+
+# Custom map layer definition using the GeoJSON file hosted on GitHub
+map_layer: postal_codes_layer {
+  url: "https://raw.githubusercontent.com/wrenchchatrepo/mediaconfidant/looker/maps/postal_codes.geojson"
+  feature_key: "postal_code"  # The key in your GeoJSON file that identifies each feature
+  property_key: "name"  # The property to use for labeling the regions
+  # format: geojson
+}
