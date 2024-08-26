@@ -1,7 +1,8 @@
 # README
 
-[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant)
+# README
 
+[![Mutable.ai Auto Wiki](https://img.shields.io/badge/Auto_Wiki-Mutable.ai-blue)](https://wiki.mutable.ai/wrenchchatrepo/mediaconfidant) __&larr;&larr;&larr;CLICK HERE TO SEE OUR AI POWERED WIKI!__
 
 ## LookML Project Structure and Conceptual Overview
 
@@ -50,9 +51,30 @@ The modern data stack is a collection of tools that work together to help busine
 + Looker API & Extensions: Extend Looker’s functionality for custom solutions.
 + Looker Visualizations: This area connects directly with end users (MC Customers and BYOV - Bring Your Own Visualization), delivering insights and visualizations.
 
+## 4. Project Structure
+
+- __agentic_system/__  _Readmes for AI system_
+- **bigquery/**   *BQML files*
+   - **ml/**  *ML SQL statements*
+   - **sql/**  *Useful SQL*
+
+- **containers/**  *Infrastructure As Code*
+   - **dockerfiles/**  *Docker for Pulumi*
+   - **pulumi/**  *Deploy programs*
+      - **programs/**  *Pulumi deploy files*
+
+- **dataform/**  *SQLX transformations*
+- **ga4/**  *Undeployed Looker model*
+- **google-adwords/**  *Undeployed Looker model*
+- **instructions/**  *on how to do most stuff*
+- **looker-explore-assistant/**  *Gemini for Looker*
+- __marketplace_google-ads/__  _Undeployed Looker model_
+- **spectacles/**  *Recommendation to use Spectacles*
+- **vendors/**  *Deployed Looker model*
+
 ## Project Structure
 
-```
+```md {"id":"01J66H499QTVPTTGE4VB42FNW0"}
 bigquery/
 -ml/ # Machine Learning SQL statements
 -sql/ # Useful SQL
@@ -96,13 +118,11 @@ The Looker application uses a model written in LookML to construct SQL queries a
 A LookML project is a collection of LookML files that describes a set of related [views](https://cloud.google.com/looker/docs/r/terms/view-file), [models](https://cloud.google.com/looker/docs/r/terms/model-file), and [Explores](https://cloud.google.com/looker/docs/r/terms/explore).
 
 + A [view](https://cloud.google.com/looker/docs/r/terms/view-file) (.view files) contains information about how to access or calculate information from each table (or
-across multiple joined tables). Here you’ll typically define the view, its dimensions and measures, and its field sets.
-
+   across multiple joined tables). Here you’ll typically define the view, its dimensions and measures, and its field sets.
 + A [model](https://cloud.google.com/looker/docs/r/terms/model-file) (.model file) contains information about which tables to use and how they should be joined together.
-Here you’ll typically define the model, its Explores, and its joins.
-
+   Here you’ll typically define the model, its Explores, and its joins.
 + An [Explore](https://cloud.google.com/looker/docs/r/terms/explore) is the starting point for business users to query data, and it is the end result of the LookML you are
-writing. To see the Explores in this project, select an Explore from the Explore menu.
+   writing. To see the Explores in this project, select an Explore from the Explore menu.
 
 <h2><span style="color:#2d7eea">Exploring Data</span></h2>
 
@@ -120,6 +140,7 @@ changes and push them to your production model.
 <h2><span style="color:#2d7eea">Additional Resources</span></h2>
 
 To learn more about LookML and how to develop visit:
+
 + [Looker User Guide](https://looker.com/guide)
 + [Looker Help Center](https://help.looker.com)
 + [Looker University](https://training.looker.com/)
