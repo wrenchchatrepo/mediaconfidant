@@ -1,1 +1,0 @@
-view: pdt_base {}

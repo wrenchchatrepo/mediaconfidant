@@ -1,72 +1,40 @@
-local_dependency: {
-  project: "marketplace_google-ads"
+project_name: "ga_four"
 
-  override_constant: GOOGLE_ADS_SCHEMA {
-    value: "google_ads"
-  }
-
-  override_constant: GOOGLE_ADS_CUSTOMER_ID {
-    value: "1962270511"
-  }
-
-  # Uncomment if needed
-  # override_constant: CONNECTION_NAME {
-  #   value: "youfit"
-  # }
+## Connection Constants:
+constant: GA4_CONNECTION {
+  value: "bigquery"
+  export: override_required
 }
 
-local_dependency: {
-  project: "ga4"
-
-  override_constant: GA4_SCHEMA {
-    value: "april2test"
-  }
-
-  override_constant: GA4_TABLE_VARIABLE {
-    value: "events_*"
-  }
-
-  override_constant: EVENT_COUNT {
-    value: ""
-  }
-
-  override_constant: model_step_prediction {
-    value: "60"
-    # export: override_optional
-  }
-
-  override_constant: BQML_PARAMETER {
-    value: "Yes"
-  }
-
-  override_constant: GA4_BQML_train_months {
-    value: "12"
-  }
-
-  override_constant: GA4_BQML_test_months {
-    value: "3"
-  }
-
-  override_constant: GA4_BQML_future_synth_months {
-    value: "12"
-  }
-
-  # Uncomment if needed
-  # override_constant: GA4_CONNECTION_NAME {
-  #   value: "gildedritual"
-  # }
+constant: GA4_SCHEMA {
+  value: "analytics_251639436"
+  export: override_optional
 }
 
-local_dependency: {
-  project: "vendors"
+constant: GA4_TABLE_VARIABLE {
+  value: "events_*"
+  export: override_optional
+}
+constant: EVENT_COUNT {
+  value: ""
+  export: override_optional
+}
+constant: model_step_prediction {
+  value: "60"
+  #export: override_optional
+}
 
-  # Add any necessary override constants here
-  # override_constant: VENDOR_SCHEMA {
-  #   value: "your_value_here"
-  # }
+constant: GA4_BQML_train_months {
+  value: "12"
+  # export: override_optional
+}
 
-  # Uncomment if needed
-  # override_constant: VENDOR_CONNECTION_NAME {
-  #   value: "your_connection_name_here"
-  # }
+constant: GA4_BQML_test_months {
+  value: "3"
+  # export: override_optional
+}
+
+constant: GA4_BQML_future_synth_months {
+  value: "12"
+  # export: override_optional
 }
