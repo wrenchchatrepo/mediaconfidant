@@ -32,6 +32,19 @@ view: synthdata {
     sql: ${TABLE}.city_state ;;
   }
 
+  dimension: city_postal_code {
+    sql: CASE
+          WHEN ${TABLE}.city_state = 'New York-NY' THEN '10001'  -- New York, NY
+          WHEN ${TABLE}.city_state = 'Los Angeles-CA' THEN '90001'  -- Los Angeles, CA
+          WHEN ${TABLE}.city_state = 'Austin-TX' THEN '73301'  -- Austin, TX
+          WHEN ${TABLE}.city_state = 'Atlanta-GA' THEN '30301'  -- Atlanta, GA
+          WHEN ${TABLE}.city_state = 'Chicago-IL' THEN '60601'  -- Chicago, IL
+          WHEN ${TABLE}.city_state = 'Detroit-MI' THEN '48201'  -- Detroit, MI
+          WHEN ${TABLE}.city_state = 'Philadelphia-PA' THEN '19101'  -- Philadelphia, PA
+          ELSE NULL
+        END ;;
+  }
+
   dimension: clicks_t1000 {
     type: number
     sql: ${TABLE}.clicks_t1000 ;;
