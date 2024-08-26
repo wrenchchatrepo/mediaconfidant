@@ -2,12 +2,12 @@ project_name: "ga_four"
 
 ## Connection Constants:
 constant: GA4_CONNECTION {
-  value: "empyrean-backup-411421"
+  value: "bigquery"
   export: override_required
 }
 
 constant: GA4_SCHEMA {
-  value: "analytics_321061426"
+  value: "analytics_251639436"
   export: override_optional
 }
 
@@ -22,10 +22,6 @@ constant: EVENT_COUNT {
 constant: model_step_prediction {
   value: "60"
   #export: override_optional
-}
-constant: BQML_PARAMETER {
-  value: "Yes"
-  export: override_optional
 }
 
 constant: GA4_BQML_train_months {
