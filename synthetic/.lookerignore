@@ -4,17 +4,14 @@
 *.ini
 
 # Ignore specific files
-budget_report.png
 LICENSE
-
 
 # Ignore these directories and their files
 .github/
-agentic_systems/
 bigquery/
+blocks/
 containers/
 dataform/
-help_docs/
+docs/
 instructions/
 roadmap/
-vendors/
