@@ -1,0 +1,20 @@
+# Ignore specific file types
+*.log
+*.bak
+*.ini
+
+# Ignore specific files
+budget_report.png
+LICENSE
+
+
+# Ignore these directories and their files
+.github/
+agentic_systems/
+bigquery/
+containers/
+dataform/
+help_docs/
+instructions/
+roadmap/
+vendors/

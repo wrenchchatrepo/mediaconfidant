@@ -1,0 +1,24 @@
+name: Sync Backup Branches
+
+# Schedule this workflow to run daily at 0400 UTC
+on:
+  schedule:
+    - cron: '0 4 * * *'
+
+jobs:
+  sync_master_to_backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          # Fetch all branches
+          fetch-depth: 0
+
+      - name: Pull from remote master to master_backup
+        run: |
+          git checkout master_backup
+          git pull origin master
+          git push origin master_backup
+
