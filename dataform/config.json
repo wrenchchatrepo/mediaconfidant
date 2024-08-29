@@ -1,8 +1,0 @@
-{
-  "defaultSchema": "your_default_schema",
-  "defaultDatabase": "doit-new-project",
-  "assertionSchema": "assertions",
-  "tablePrefix": "synthetic_",
-  "warehouse": "bigquery",
-  "projectId": "doit-new-project"
-}
